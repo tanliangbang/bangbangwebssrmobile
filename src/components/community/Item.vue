@@ -6,7 +6,9 @@
       <span >{{itemData.username}}</span>
     </div>
     <p class="title" >
-      <router-link target="_blank" :to="{ path: '/resContent',query: { id: itemData.id, type: type }}">{{itemData.content.title}}</router-link>
+      <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/resContent',query: { id: itemData.id, type: type }}">{{itemData.content.title}}</router-link>
+      <router-link v-if="$store.state.common.isMobile"  :to="{ path: '/resContent',query: { id: itemData.id, type: type }}">{{itemData.content.title}}</router-link>
+
     </p>
     <p class="summary">{{itemData.content.breif}}</p>
     <div class="bottom" >评论:1222&nbsp;&nbsp;浏览:{{itemData.readyNum}}&nbsp;&nbsp;喜欢:1555</div>

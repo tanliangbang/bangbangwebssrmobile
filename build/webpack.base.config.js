@@ -6,7 +6,7 @@ module.exports = {
   devtool: '#source-map',
   entry: {
     app: './src/client-entry.js',
-    vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync', 'axios', 'babel-polyfill', 'framework7' , 'framework7-vue']
+    vendor: ['vue', 'vue-router', 'vuex', 'vuex-router-sync', 'axios', 'babel-polyfill']
   },
   resolve: {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],

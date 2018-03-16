@@ -65,6 +65,7 @@ export default {
     >div{
       flex:1;
       margin:20px;
+      min-width:200px;
     }
   }
 

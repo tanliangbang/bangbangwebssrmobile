@@ -164,6 +164,11 @@ export default {
       border-bottom:none;
     }
   }
+  @media screen and (max-width: 1000px) {
+    .reply{
+      margin:10px 10px;
+    }
+  }
 
   .commentTextarea{
     display:none

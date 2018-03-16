@@ -15,6 +15,15 @@
       margin-bottom: 25px;
       border:1px solid @borderColor;
     }
+    @media screen and (max-width: 1000px) {
+      .userAavar {
+        width: 60px;
+        height: 60px;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+      }
+    }
     .simpleInfo {
       margin-left: 30px;
       >div:first-child {
@@ -22,6 +31,11 @@
         font-size: 24px;
         color: #333;
         font-weight: 400;
+      }
+      @media screen and (max-width: 1000px) {
+        >div:first-child {
+          margin-top: 10px;
+        }
       }
       >div:nth-child(2) {
         font-size: 16px;
@@ -55,6 +69,14 @@
       cursor: pointer;
       font-size:14px;
     }
+
+    @media screen and (max-width: 1000px) {
+      .changeInfoBtn {
+        height: 35px;
+        margin-top: 20px;
+        margin-bottom:10px;
+      }
+    }
   }
   .listContent{
     background:#fff;
@@ -83,7 +105,6 @@
       color:#fff;
     }
   }
-
 }
 .fl{
   float:left;
@@ -91,3 +112,5 @@
 .fr{
   float:right;
 }
+
+

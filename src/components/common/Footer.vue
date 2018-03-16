@@ -1,6 +1,7 @@
 <template>
   <div class="footer">
-    <p>关于本站 ： 作者：谭亮邦    QQ：648103576    程序员技术文章网站 本站展示页用的是vue.js+ webpack  后台管理系统采用的是react+redux+ant design+webpack 后端用的是node js</p>
+    <p v-if="!$store.state.common.isMobile">关于本站 ： 作者：谭亮邦    QQ：648103576    程序员技术文章网站 本站展示页用的是vue.js+ webpack  后台管理系统采用的是react+redux+ant design+webpack 后端用的是node js</p>
+    <p v-if="$store.state.common.isMobile">关于本站 ： 作者：谭亮邦    QQ：648103576  </p>
   </div>
 </template>
 
