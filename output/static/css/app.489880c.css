@@ -732,15 +732,20 @@ a[data-v-7d945e32]:hover {
 }
 }
 .footer[data-v-7d945e32] {
-  height: 60px;
   width: 100%;
   background: #333;
   text-align: center;
   clear: both;
+  padding: 10px 20px;
 }
 .footer > p[data-v-7d945e32] {
-  line-height: 60px;
   color: #fff;
+  line-height: 20px;
+}
+@media screen and (max-width: 1000px) {
+.footer[data-v-7d945e32] {
+    font-size: 12px;
+}
 }
 
 html[data-v-c2727bb8],
@@ -1955,4 +1960,4 @@ a[data-v-7d311382]:hover {
   animation-fill-mode: forwards;
 }
 
-/*# sourceMappingURL=app.ee4eb61.css.map*/
+/*# sourceMappingURL=app.489880c.css.map*/

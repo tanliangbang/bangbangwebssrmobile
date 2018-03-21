@@ -33,19 +33,19 @@
              <p class="model-title">项目案例  <router-link to="/myProduction"> 更多案例</router-link></p>
              <div>
                <div>
-                 <img src="http://p3gc5ydac.bkt.clouddn.com/logo.png" />
+                 <img src="https://file.tanliangbang.club/logo.png" />
                  <p>vue.js的项目搭建案例</p>
                </div>
                <div>
-                 <img src="http://p3gc5ydac.bkt.clouddn.com/react.jpg" />
+                 <img src="https://file.tanliangbang.club/react.jpg" />
                  <p>vue.js的项目搭建案例</p>
                </div>
                <div>
-                 <img src="http://p3gc5ydac.bkt.clouddn.com/nodejs.jpg" />
+                 <img src="https://file.tanliangbang.club/nodejs.jpg" />
                  <p>vue.js的项目搭建案例</p>
                </div>
                <div>
-                 <img src="http://p3gc5ydac.bkt.clouddn.com/angular.jpg" />
+                 <img src="https://file.tanliangbang.club/angular.jpg" />
                  <p>vue.js的项目搭建案例</p>
                </div>
              </div>

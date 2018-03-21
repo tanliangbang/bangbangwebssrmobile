@@ -57,6 +57,22 @@ export function createAPI({ client }) {
           reject(error)
         })
       })
+    },
+    upload (url, data, config) {
+      let headers = config
+      return new Promise((resolve, reject) => {
+        return axios({
+          method: 'post',
+          url,
+          data: data,
+          timeout: 30000,
+          headers: headers
+        }).then(res => {
+          resolve(res.data)
+        }).catch(error => {
+          reject(error)
+        })
+      })
     }
   }
 }

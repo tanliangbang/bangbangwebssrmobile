@@ -1,11 +1,12 @@
   <template>
   <div class="resContent" v-if="resContent!==null">
     <div class="container">
+
       <div class="main-right">
             <div class="main">
                 <div class="mainList">
                   <div class="topadvertise">
-                    <img src="http://p3gc5ydac.bkt.clouddn.com/top.png"/>
+                    <img src="https://file.tanliangbang.club/top.png"/>
                   </div>
                   <div class="list-model1">
                     <div class="item">
@@ -115,5 +116,8 @@ export default {
     >img{
       width:100%;
     }
+  }
+  .share{
+    position:relative;
   }
 </style>

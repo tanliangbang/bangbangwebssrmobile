@@ -1,7 +1,9 @@
 <template>
   <div class="footer">
-    <p v-if="!$store.state.common.isMobile">关于本站 ： 作者：谭亮邦    QQ：648103576    程序员技术文章网站 本站展示页用的是vue.js+ webpack  后台管理系统采用的是react+redux+ant design+webpack 后端用的是node js</p>
-    <p v-if="$store.state.common.isMobile">关于本站 ： 作者：谭亮邦    QQ：648103576  </p>
+    <p v-if="!$store.state.common.isMobile">
+      关于本站:&nbsp;作者版权所有：谭亮邦&nbsp;QQ:648103576&nbsp;程序员技术文章网站&nbsp;湘ICP备18004544号-1&nbsp;©2018-2017
+    </p>
+    <p v-if="$store.state.common.isMobile">关于本站:&nbsp;作者版权所有：谭亮邦&nbsp;QQ:648103576&nbsp;程序员技术文章网站&nbsp;湘ICP备18004544号-1&nbsp;©2018-2017 </p>
   </div>
 </template>
 
@@ -21,14 +23,19 @@ export default {
 <style lang='less' scoped>
   @import "../../style/common.less";
   .footer{
-    height:60px;
     width:100%;
     background:#333;
     text-align: center;
     clear:both;
+    padding:10px 20px;
     >p{
-      line-height:60px;
       color:#fff;
+      line-height:20px;
+    }
+  }
+  @media screen and (max-width: 1000px) {
+    .footer{
+       font-size:12px;
     }
   }
 </style>

@@ -36,9 +36,9 @@
              </div>
            </div>
            <div class="right">
-             <img src="http://p3gc5ydac.bkt.clouddn.com/right.jpg">
-             <img src="http://p3gc5ydac.bkt.clouddn.com/right.jpg">
-             <img src="http://p3gc5ydac.bkt.clouddn.com/right.jpg">
+             <img src="https://file.tanliangbang.club/right.jpg">
+             <img src="https://file.tanliangbang.club/right.jpg">
+             <img src="https://file.tanliangbang.club/right.jpg">
            </div>
          </div>
        </div>

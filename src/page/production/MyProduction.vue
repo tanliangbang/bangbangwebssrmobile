@@ -2,7 +2,7 @@
   <div class="myProduction">
       <div class="container">
         <div class="production-page">
-          <img src="http://p3gc5ydac.bkt.clouddn.com/proImg.jpg">
+          <img src="https://file.tanliangbang.club/proImg.jpg">
           <div class="productionList">
             <div>
               <ListItem v-for="(item) in myproduction.content[0]" :key="item.id" v-bind:item="item" />
