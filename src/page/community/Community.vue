@@ -2,7 +2,7 @@
   <div class="community">
       <div class="container">
           <div class="top">
-            <img src="https://file.tanliangbang.club/hd01.jpg" />
+            <img src="https://file.tanliangbang.club/communityTop.jpg" />
           </div>
 
           <div class="navList">

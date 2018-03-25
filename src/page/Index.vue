@@ -7,18 +7,47 @@
          </div>
          <div class="model2">
 
-           <p class="model-title">精品文章  <router-link to="/resContentList"> 更多精品文章</router-link></p>
-          <div class="list-model1">
-            <div v-for="(item) in goodArticles.content" :key="item.id" class="item">
-              <p v-if="!$store.state.common.isMobile"><router-link target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-              <p v-if="$store.state.common.isMobile"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-              <div>
-                <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
-              </div>
-              <router-link class="articleDetial" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">立即阅读</router-link>
-            </div>
 
-          </div>
+           <div class="articleList">
+              <div>
+                <p class="model-title">前端技术  <router-link to="/resContentList"> 更多</router-link></p>
+                <div class="list-model1">
+                  <div v-for="(item) in goodArticles.content" :key="item.id" class="item">
+                    <p v-if="!$store.state.common.isMobile"><router-link class="nomalTitle"  target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                    <p v-if="$store.state.common.isMobile"><router-link class="nomalTitle"  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                    <div>
+                      <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="model-title">后端技术  <router-link to="/resContentList"> 更多</router-link></p>
+                <div class="list-model1">
+                  <div v-for="(item) in goodArticles.content" :key="item.id" class="item">
+                    <p v-if="!$store.state.common.isMobile"><router-link class="nomalTitle" target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                    <p v-if="$store.state.common.isMobile"><router-link class="nomalTitle"  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                    <div>
+                      <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div>
+                <p class="model-title">精品文章  <router-link to="/resContentList"> 更多</router-link></p>
+                <div class="list-model1">
+                  <div v-for="(item) in goodArticles.content" :key="item.id" class="item">
+                    <p v-if="!$store.state.common.isMobile"><router-link class="nomalTitle" target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                    <p v-if="$store.state.common.isMobile"><router-link  class="nomalTitle" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                    <div>
+                      <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+           </div>
+
+
 
          </div>
 
