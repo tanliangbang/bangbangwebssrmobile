@@ -7,8 +7,8 @@
           <div class="list-model1">
             <transition-group>
             <div class="item" v-for="(item, index)  in resContentList"   v-bind:data-index="index" :key="item.id" >
-                  <p v-if="!$store.state.common.isMobile"><router-link class="bigTitle" target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: type }}">{{item.content.title}}</router-link></p>
-                  <p v-if="$store.state.common.isMobile"><router-link  class="bigTitle" :to="{ path: '/resContent',query: { id: item.id, type: type }}">{{item.content.title}}</router-link></p>
+                  <p v-if="!$store.state.common.isMobile" class="bigTitle"><router-link  target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: type }}">{{item.content.title}}</router-link></p>
+                  <p v-if="$store.state.common.isMobile" class="bigTitle"><router-link   :to="{ path: '/resContent',query: { id: item.id, type: type }}">{{item.content.title}}</router-link></p>
 
                    <div>
                     <span>来源:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:&nbsp;{{formatDate(item.createTime)}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>

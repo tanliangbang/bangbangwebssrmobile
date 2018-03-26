@@ -10,41 +10,44 @@
 
            <div class="articleList">
               <div>
-                <p class="model-title">前端技术  <router-link to="/resContentList"> 更多</router-link></p>
+                <p class="model-title">前端技术  <router-link to="/resContentList?type=webtec"> 更多</router-link></p>
                 <div class="list-model1">
-                  <div v-for="(item) in goodArticles.content" :key="item.id" class="item">
-                    <p v-if="!$store.state.common.isMobile"><router-link class="nomalTitle"  target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                    <p v-if="$store.state.common.isMobile"><router-link class="nomalTitle"  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                  <div v-for="(item) in articleList[0]" :key="item.id" class="item">
+                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                    <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
                     <div>
                       <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
                     </div>
                   </div>
                 </div>
               </div>
-              <div>
-                <p class="model-title">后端技术  <router-link to="/resContentList"> 更多</router-link></p>
-                <div class="list-model1">
-                  <div v-for="(item) in goodArticles.content" :key="item.id" class="item">
-                    <p v-if="!$store.state.common.isMobile"><router-link class="nomalTitle" target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                    <p v-if="$store.state.common.isMobile"><router-link class="nomalTitle"  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                    <div>
-                      <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div>
-                <p class="model-title">精品文章  <router-link to="/resContentList"> 更多</router-link></p>
-                <div class="list-model1">
-                  <div v-for="(item) in goodArticles.content" :key="item.id" class="item">
-                    <p v-if="!$store.state.common.isMobile"><router-link class="nomalTitle" target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                    <p v-if="$store.state.common.isMobile"><router-link  class="nomalTitle" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                    <div>
-                      <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
+             <div>
+               <p class="model-title">后端技术  <router-link to="/resContentList?type=backtec"> 更多</router-link></p>
+               <div class="list-model1">
+                 <div v-for="(item) in articleList[1]" :key="item.id" class="item">
+                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                   <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                   <div>
+                     <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                   </div>
+                 </div>
+               </div>
+             </div>
+
+             <div>
+               <p class="model-title">优秀文章  <router-link to="/resContentList?type=goodarticles"> 更多</router-link></p>
+               <div class="list-model1">
+                 <div v-for="(item) in articleList[2]" :key="item.id" class="item">
+                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link  target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                   <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                   <div>
+                     <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                   </div>
+                 </div>
+               </div>
+             </div>
+
            </div>
 
 
@@ -107,7 +110,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      goodArticles: 'getResContentList',
+      articleList: 'getIndexArticleList',
       myproduction: 'getIndexProduction'
     })
   },
@@ -120,8 +123,8 @@ export default {
     }
   },
   async asyncData({ store }) {
-    await store.dispatch('getResContentList', {type: 'production', currpage: 1, size: 4})
-    return store.dispatch('getResContentList', {type: 'goodarticles', currpage: 1, size: 10})
+    await store.dispatch('getIndexArticleList', {type: 'webtec', currpage: 1, size: 10})
+    return store.dispatch('getResContentList', {type: 'production', currpage: 1, size: 4})
   }
 }
 </script>

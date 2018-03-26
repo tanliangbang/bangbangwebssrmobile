@@ -41,9 +41,11 @@ a:hover {
 
 .bigTitle{
   font-size:24px;
+  padding:20px 0px;
 }
 .nomalTitle{
-  font-size:20px;
+  font-size:18px;
+  margin:10px 0px;
 }
 .fl{
   float:left;
@@ -62,12 +64,10 @@ a:hover {
 
 .list-model1{
   .item{
-    margin-top:20px;
     padding-left:20px;
     padding-right:20px;
     position:relative;
     p:nth-child(1){
-      font-size: 24px;
       transition: color 0.3s ease;
       position: relative;
       color:@mainColor;
@@ -76,11 +76,7 @@ a:hover {
         color:@mainColor;
       }
       >a:hover{
-        transition: color 2s ease;
-        background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(rgba(0, 128, 0, 1)), to(rgba(51, 51, 51, 1)));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-
+        color:@a-hover-color;
       }
     }
     div:nth-child(2){
@@ -89,7 +85,6 @@ a:hover {
       color: #ccc;
       padding-bottom: 5px;
       border-bottom: 1px dashed #ddd;
-      margin-top:20px;
     }
     .articleDetial {
       position:absolute;
