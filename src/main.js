@@ -9,6 +9,7 @@ import Prompt from './plugins/prompt/index'
 import LoginAndRegist from './components/loginAndregist/index'
 import { sync } from 'vuex-router-sync'
 import titleMixin from './utils/title'
+import VueLazyload from 'vue-lazyload'
 
 Vue.mixin(titleMixin)
 Vue.config.productionTip = false
@@ -28,3 +29,10 @@ export function createApp () {
   return {app, router, store}
 }
 Vue.use(LoginAndRegist, store)
+Vue.use(VueLazyload, {
+  preLoad: 1,
+  error: 'https://file.tanliangbang.club/404.png',
+  loading: 'https://file.tanliangbang.club/loadingspin.svg',
+  attempt: 1,
+  listenEvents: ['scroll', 'mousewheel']
+})

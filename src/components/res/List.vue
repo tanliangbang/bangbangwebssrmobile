@@ -14,7 +14,9 @@
                     <span>来源:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:&nbsp;{{formatDate(item.createTime)}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
                   </div>
                   <div class="list1-content">
-                    <img :src="item.content.titleImg">
+                    <div>
+                      <img class="lazy-img-fadein" v-lazy="item.content.titleImg">
+                    </div>
                     <p>{{item.content.breif}}</p>
                   </div>
               </div>
@@ -62,4 +64,5 @@ export default {
       background:#fff;
     }
   }
+
 </style>

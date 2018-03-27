@@ -30,11 +30,11 @@ export default {
   },
   mounted () {
     this.$store.dispatch('getUserInfo')
-    this.minHeight = document.documentElement.clientHeight - 60
+    this.minHeight = document.documentElement.clientHeight - 40
     let width = document.documentElement.clientWidth
     this.$store.dispatch('setCurrWidth', width)
     window.onresize = () => {
-      this.minHeight = document.documentElement.clientHeight - 60
+      this.minHeight = document.documentElement.clientHeight - 40
       let width = document.documentElement.clientWidth
       this.$store.dispatch('setCurrWidth', width)
     }

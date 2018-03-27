@@ -13,8 +13,8 @@
                 <p class="model-title">前端技术  <router-link to="/resContentList?type=webtec"> 更多</router-link></p>
                 <div class="list-model1">
                   <div v-for="(item) in articleList[0]" :key="item.id" class="item">
-                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                    <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'webtec' }}">{{item.content.title}}</router-link></p>
+                    <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'webtec' }}">{{item.content.title}}</router-link></p>
                     <div>
                       <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
                     </div>
@@ -26,8 +26,8 @@
                <p class="model-title">后端技术  <router-link to="/resContentList?type=backtec"> 更多</router-link></p>
                <div class="list-model1">
                  <div v-for="(item) in articleList[1]" :key="item.id" class="item">
-                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                   <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
+                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'backtec' }}">{{item.content.title}}</router-link></p>
+                   <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'backtec' }}">{{item.content.title}}</router-link></p>
                    <div>
                      <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
                    </div>
@@ -55,7 +55,7 @@
          </div>
 
           <div class="model4">
-            <p class="model-title">我的作品  <router-link to="/resContentList"> 更多作品</router-link></p>
+            <p class="model-title">我的作品  <router-link to="/myProduction"> 更多作品</router-link></p>
             <div>
                 <ListItem v-for="(item) in myproduction.content" :key="item.id" v-bind:item = "item" />
             </div>

@@ -10,7 +10,7 @@
                   </div>
                   <div class="list-model1">
                     <div class="item">
-                      <p>{{resContent.content.title}}</p>
+                      <p class="bigTitle">{{resContent.content.title}}</p>
                       <div>
                         <span>来源:&nbsp;{{resContent.username!==null?resContent.username:resContent.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:&nbsp;{{formatDate(resContent.createTime)}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{resContent.readyNum}}</span>
                       </div>
