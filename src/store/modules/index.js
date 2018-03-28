@@ -23,22 +23,24 @@ const mutations = {
 }
 
 const actions = {
-  getIndexArticleList ({ state, commit }) {
-    api.getResContentList('webtec', 0, 5).then((response) => {
-      commit('GET_INDEXWEBTEC', response.data.content)
-    }).catch((error) => {
-      console.log(error)
-    })
-    api.getResContentList('backtec', 0, 5).then((response) => {
-      commit('GET_BACKTEC', response.data.content)
-    }).catch((error) => {
-      console.log(error)
-    })
-    return api.getResContentList('goodarticles', 0, 5).then((response) => {
-      commit('GET_GOODARTICLE', response.data.content)
-    }).catch((error) => {
-      console.log(error)
-    })
+  async getIndexArticleList ({ state, commit }) {
+    await Promise.all([
+      api.getResContentList('webtec', 0, 5).then((response) => {
+        commit('GET_INDEXWEBTEC', response.data.content)
+      }).catch((error) => {
+        console.log(error)
+      }),
+      api.getResContentList('backtec', 0, 5).then((response) => {
+        commit('GET_BACKTEC', response.data.content)
+      }).catch((error) => {
+        console.log(error)
+      }),
+      api.getResContentList('goodarticles', 0, 5).then((response) => {
+        commit('GET_GOODARTICLE', response.data.content)
+      }).catch((error) => {
+        console.log(error)
+      })
+    ])
   }
 }
 

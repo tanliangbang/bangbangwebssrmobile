@@ -123,8 +123,10 @@ export default {
     }
   },
   async asyncData({ store }) {
-    await store.dispatch('getIndexArticleList', {type: 'webtec', currpage: 1, size: 10})
-    return store.dispatch('getResContentList', {type: 'production', currpage: 1, size: 4})
+    await Promise.all([
+      store.dispatch('getIndexArticleList', {type: 'webtec', currpage: 1, size: 10}),
+      store.dispatch('getResContentList', {type: 'production', currpage: 1, size: 4})
+    ])
   }
 }
 </script>
