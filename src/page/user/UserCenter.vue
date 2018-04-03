@@ -55,7 +55,9 @@ export default {
   name: 'userCenter',
   title () {
     return {
-      title: '用户中心'
+      title: '用户中心',
+      keywords: '码农集聚地,前端开发,前端社区,程序员,javascript',
+      description: 'bangbang网站提供了很多前端后端及程序员开发文章包含各种html,javascript,nodejs,java,vue,react,angularjs,php等等语言、为打造优秀的程序员学习教程而努力。'
     }
   },
   components: {

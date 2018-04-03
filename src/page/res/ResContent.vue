@@ -12,7 +12,7 @@
                     <div class="item">
                       <p class="bigTitle">{{resContent.content.title}}</p>
                       <div>
-                        <span>来源:&nbsp;{{resContent.username!==null?resContent.username:resContent.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:&nbsp;{{formatDate(resContent.createTime)}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{resContent.readyNum}}</span>
+                        <span>来源:{{resContent.username!==null?resContent.username:resContent.content.from}}</span><span>日期 : {{formatDate(resContent.createTime)}}</span><span>阅读: {{resContent.readyNum}}</span>
                       </div>
                     </div>
                     <div class="content"  v-html="resContent.content.content"></div>
@@ -39,8 +39,11 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'ResContent',
   title () {
+    console.log(this)
     return {
-      title: '精彩内容'
+      title: this.resContent ? this.resContent.content.title : '',
+      keywords: '码农集聚地,前端开发,前端社区,程序员,javascript',
+      description: 'bangbang网站提供了很多前端后端及程序员开发文章包含各种html,javascript,nodejs,java,vue,react,angularjs,php等等语言、为打造优秀的程序员学习教程而努力。'
     }
   },
   components: {

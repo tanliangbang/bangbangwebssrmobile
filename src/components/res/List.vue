@@ -11,7 +11,7 @@
                   <p v-if="$store.state.common.isMobile" class="bigTitle"><router-link   :to="{ path: '/resContent',query: { id: item.id, type: type }}">{{item.content.title}}</router-link></p>
 
                    <div>
-                    <span>来源:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:&nbsp;{{formatDate(item.createTime)}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                    <span>来源: {{item.content.from}}</span><span>日期 :{{formatDate(item.createTime)}}</span><span>阅读:{{item.readyNum}}</span>
                   </div>
                   <div class="list1-content">
                     <div>

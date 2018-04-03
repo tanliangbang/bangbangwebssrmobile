@@ -16,7 +16,7 @@
                     <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'webtec' }}">{{item.content.title}}</router-link></p>
                     <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'webtec' }}">{{item.content.title}}</router-link></p>
                     <div>
-                      <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                      <span>作者:  {{item.content.from}}</span><span>日期  :{{formatDate(item.createTime,'-')}}</span><span>阅读:{{item.readyNum}}</span>
                     </div>
                   </div>
                 </div>
@@ -29,7 +29,7 @@
                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'backtec' }}">{{item.content.title}}</router-link></p>
                    <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'backtec' }}">{{item.content.title}}</router-link></p>
                    <div>
-                     <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                     <span>作者: {{item.content.from}}</span><span>日期 :{{formatDate(item.createTime,'-')}}</span> <span> 阅读: {{item.readyNum}}</span>
                    </div>
                  </div>
                </div>
@@ -42,7 +42,7 @@
                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link  target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
                    <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
                    <div>
-                     <span>作者:&nbsp;{{item.content.from}}</span>&nbsp;&nbsp;<span>日期&nbsp;:{{formatDate(item.createTime,'-')}}</span>&nbsp;&nbsp;<span>&nbsp;阅读:&nbsp;{{item.readyNum}}</span>
+                     <span>作者: {{item.content.from}}</span> <span>日期 :{{formatDate(item.createTime,'-')}}</span> <span> 阅读: {{item.readyNum}}</span>
                    </div>
                  </div>
                </div>
@@ -96,9 +96,9 @@ export default {
   name: 'Index',
   title () {
     return {
-      title: '首页',
-      keywords: '码农集聚地',
-      description: 'web前端资讯'
+      title: '',
+      keywords: '码农集聚地,前端开发,前端社区,程序员,javascript',
+      description: 'bangbang网站提供了很多前端后端及程序员开发文章包含各种html,javascript,nodejs,java,vue,react,angularjs,php等等语言、为打造优秀的程序员学习教程而努力。'
     }
   },
   components: {
