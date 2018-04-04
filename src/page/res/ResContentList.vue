@@ -122,7 +122,6 @@ export default {
     width:100%;
   }
   .mainList{
-     background:#fff;
      margin-top:20px;
      padding-top:20px;
   }

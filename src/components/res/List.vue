@@ -1,9 +1,20 @@
 <template>
     <div class="list">
-      <div>
-        <img src="/static/img/top.png">
-      </div>
-      <div class="mainList">
+        <article class="articleList1"   v-for="(item, index)  in resContentList"   :key="item.id">
+            <h2 class="articleTitle"><i>个人日记</i><a>{{item.content.title}}</a></h2>
+            <div class="artContent">
+               <img class="lazy-img-fadein" v-lazy="item.content.titleImg" />
+               <span>{{item.content.breif}}</span>
+            </div>
+          <div class="otherInfo">
+            <span><i class="fa fa-user"></i><a>{{item.content.from}}</a></span>
+            <span><i class="fa fa-clock-o"></i>{{formatDate(item.createTime)}}</span>
+            <span><i class="fa fa-eye"></i>{{item.readyNum}}</span>
+            <span><i class="fa fa-thumbs-up"></i>1000</span>
+          </div>
+        </article>
+
+   <!--   <div class="mainList">
           <div class="list-model1">
             <transition-group>
             <div class="item" v-for="(item, index)  in resContentList"   v-bind:data-index="index" :key="item.id" >
@@ -24,7 +35,7 @@
 
           </div>
 
-      </div>
+      </div>-->
 
     </div>
 
@@ -51,18 +62,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import "../../style/common.less";
-  .list{
-      background:#fff;
-    >div:nth-child(1){
-      padding:5px 20px;
-      >img{
-        width:100%;
-      }
-    }
-    .mainList{
-      background:#fff;
-    }
-  }
+@import "../../style/commonClass.less";
 
 </style>
