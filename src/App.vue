@@ -52,7 +52,7 @@ export default {
 /*
    background:linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
 */
-   background:#ccffcc;
+   background:#eee;
  }
  .pageContent{
    padding-top:60px;

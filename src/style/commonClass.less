@@ -1,0 +1,88 @@
+//------------------------------------列表公共样式--------------
+.articleList1{
+  background:#fff;
+  padding: 20px 15px 30px 20px;
+  margin-bottom:10px;
+  position:relative;
+  border-radius:4px;
+  .artContent{
+     margin-top:10px;
+    padding-top:10px;
+    border-top:1px dashed #ddd;
+     img{
+       width:200px;
+       height:120px;
+       float:left;
+       margin-right:20px;
+     }
+     span{
+       color: #777;
+       line-height: 24px;
+       font-size:14px;
+     }
+     :after{
+       content: "\0020";
+       display: block;
+       height: 0;
+       clear: both;
+     }
+   }
+   .otherInfo{
+     font-size: 13px;
+     color: #999;
+     right:10px;
+     bottom:10px;
+     position:absolute;
+     >span{
+       margin-right: 20px;
+       i{
+         margin-right:5px;
+       }
+       .fa{
+         width: 16px;
+         font-size: 1.23em;
+         text-align: center;
+       }
+     }
+     >span:nth-last-child(1){
+       color:#f78585;
+     }
+   }
+}
+
+.articleTitle{
+  display: inline;
+  font-size: 20px;
+  margin: 0;
+  font-weight: normal;
+  position: relative;
+  top: 1px;
+  line-height: 25px;
+   i{
+     background:red;
+     color:#fff;
+     font-size:12px;
+     position: relative;
+     padding:5px;
+     border-radius:3px;
+     margin-right:20px;
+     top:-2px;
+   }
+   a{
+     color: #00a67c;
+     text-decoration: none;
+   }
+  i::after{
+    top: 7px;
+    right: -4px;
+    border-left: 4px solid red;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    position: absolute;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    content: "";
+  }
+
+}

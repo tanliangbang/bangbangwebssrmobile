@@ -25860,7 +25860,7 @@
                     if(!options.className){
                         options.className =  'edui-for-' + btnName;
                     }
-                    options.cssRules = '.edui-default  .edui-for-'+ btnName +' .edui-icon {'+ cssRules +'}'
+                    options.cssRules = '.edui-default  .edui-for-'+ btnName +' .edui-icon.less {'+ cssRules +'}'
                 }
                 this.initOptions(options);
                 this.initButton();
@@ -25884,7 +25884,7 @@
                     '<div id="##_state" stateful>' +
                     '<div class="%%-wrap"><div id="##_body" unselectable="on" ' + (this.title ? 'title="' + this.title + '"' : '') +
                     ' class="%%-body" onmousedown="return $$._onMouseDown(event, this);" onclick="return $$._onClick(event, this);">' +
-                    (this.showIcon ? '<div class="edui-box edui-icon"></div>' : '') +
+                    (this.showIcon ? '<div class="edui-box edui-icon.less"></div>' : '') +
                     (this.showText ? '<div class="edui-box edui-label">' + this.label + '</div>' : '') +
                     '</div>' +
                     '</div>' +
@@ -25977,7 +25977,7 @@
                 return '<div id="##" class="edui-box %%">' +
                     '<div '+ (this.title ? 'title="' + this.title + '"' : '') +' id="##_state" stateful><div class="%%-body">' +
                     '<div id="##_button_body" class="edui-box edui-button-body" onclick="$$._onButtonClick(event, this);">' +
-                    '<div class="edui-box edui-icon"></div>' +
+                    '<div class="edui-box edui-icon.less"></div>' +
                     '</div>' +
                     '<div class="edui-box edui-splitborder"></div>' +
                     '<div class="edui-box edui-arrow" onclick="$$._onArrowClick();"></div>' +
@@ -26385,7 +26385,7 @@
 
                     tempIndex === 0 && tmpl.push('<tr>');
 
-                    tmpl.push( '<td index="'+ i +'" ' + tempClassName + ' stateful><div class="edui-icon edui-'+ alignType[ tempIndex ] +'"></div></td>' );
+                    tmpl.push( '<td index="'+ i +'" ' + tempClassName + ' stateful><div class="edui-icon.less edui-'+ alignType[ tempIndex ] +'"></div></td>' );
 
                     tempIndex === 2 && tmpl.push('</tr>');
 
@@ -26779,7 +26779,7 @@
             },
             renderLabelHtml:function () {
                 return '<div class="edui-arrow"></div>' +
-                    '<div class="edui-box edui-icon"></div>' +
+                    '<div class="edui-box edui-icon.less"></div>' +
                     '<div class="edui-box edui-label %%-label">' + (this.label || '') + '</div>';
             },
             getStateDom:function () {
@@ -29026,7 +29026,7 @@
                     '<div id="##_bottombar" class="%%-bottomContainer"><table><tr>' +
                     '<td id="##_elementpath" class="%%-bottombar"></td>' +
                     '<td id="##_wordcount" class="%%-wordcount"></td>' +
-                    '<td id="##_scale" class="%%-scale"><div class="%%-icon"></div></td>' +
+                    '<td id="##_scale" class="%%-scale"><div class="%%-icon.less"></div></td>' +
                     '</tr></table></div>' +
                     '<div id="##_scalelayer"></div>' +
                     '</div>';
