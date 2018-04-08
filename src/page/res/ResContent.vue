@@ -22,8 +22,10 @@
                 </div>
               </div>
             <div class="right">
-             <RightList v-if="type!==null" v-bind:rightList="readyRank"  v-bind:title="'阅读排行'" v-bind:type="type"/>
-             <RightList v-if="type!==null"  v-bind:rightList="recommend"   v-bind:title="'推荐排行'" v-bind:type="type"/>
+              <ContactWay/>
+              <aboutWeb/>
+              <ScrollImg/>
+              <RightList   v-bind:rightList="readyRank" v-bind:type="type" v-bind:title="'热门文章'"/>
             </div>
           </div>
     </div>
@@ -32,7 +34,10 @@
 
 <script>
 import Tool from '../../utils/Tool'
-import RightList from '../../components/res/RightList'
+import RightList from '../../components/right/rightList'
+import ContactWay from '../../components/right/contactWay'
+import aboutWeb from '../../components/right/aboutWeb'
+import ScrollImg from '../../components/right/ScrollImg'
 import Comment from '../../components/comment/Comment'
 import CommentList from '../../components/comment/CommentList'
 import { mapGetters } from 'vuex'
@@ -49,7 +54,10 @@ export default {
   components: {
     RightList,
     Comment,
-    CommentList
+    CommentList,
+    ContactWay,
+    aboutWeb,
+    ScrollImg
   },
   data () {
     return {

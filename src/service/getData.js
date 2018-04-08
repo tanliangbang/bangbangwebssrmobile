@@ -11,6 +11,15 @@ export const getNav = (type) => http.get('/api/res/getResListByType', {
 })
 
 /**
+ * 获取文章列表
+ */
+
+export const getArticleList = (start, pageSize) => http.get('/api/article/getArticleListByType', {
+  start: start,
+  pageSize: pageSize
+})
+
+/**
  * 根据类型获取资源列表内容
  */
 export const getResContentList = (name, start, size) => http.get('/api/res/getResContentList', {

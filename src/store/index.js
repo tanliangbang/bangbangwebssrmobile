@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import common from './modules/common'
 import res from './modules/res'
 import index from './modules/index'
+import article from './modules/article'
 
 import createLogger from '../plugins/store-logger/logger'
 
@@ -14,6 +15,7 @@ export default new Vuex.Store({
   modules: {
     common,
     res,
+    article,
     index
   },
   strict: debug,

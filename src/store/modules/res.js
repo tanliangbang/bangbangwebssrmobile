@@ -65,8 +65,8 @@ const mutations = {
 
 const actions = {
   getArticleNav ({ state, commit }, type) {
-    return api.getNav(type).then((response) => {
-      commit('GET_ARTICLENAV', response.data)
+    return api.getResContentList(type).then((response) => {
+      commit('GET_ARTICLENAV', response.data.content)
     }).catch((error) => {
       console.log(error)
     })

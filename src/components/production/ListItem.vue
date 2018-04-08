@@ -31,7 +31,7 @@ export default {
   @import "../../style/common.less";
   .listItem{
       width:100%;
-      height:300px;
+      height:275px;
       border: 1px solid #d5e0dd;
       background: #fff;
       box-shadow: 0 0 7px #cae7df;
@@ -41,7 +41,7 @@ export default {
     text-align: center;
       >img{
         width:100%;
-        height:230px;
+        height:205px;
       }
       p{
         margin-top:10px;

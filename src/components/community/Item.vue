@@ -42,6 +42,7 @@ export default {
     margin:0px;
     border-bottom: 1px dashed @borderColor;
     padding:10px;
+    min-height: 120px;
     .avatar{
       width:20px;
       height:20px;

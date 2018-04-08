@@ -1,10 +1,6 @@
 <template>
   <div class="community">
       <div class="container">
-          <div class="top">
-            <img src="https://file.tanliangbang.club/communityTop.jpg" />
-          </div>
-
           <div class="navList">
             <ul >
               <li v-for="(item) in resList" v-on:click="toCommunity(item.name)" :key="item.id" :class="item.name === type?'active' : ''">{{item.cname}}</li>
@@ -22,8 +18,10 @@
             </div>
           </div>
           <div class="right">
-            <RightList   v-bind:rightList="readyRank" v-bind:type="type" v-bind:title="'阅读排行'"/>
-            <RightList   v-bind:rightList="recommend" v-bind:type="type" v-bind:title="'推荐排行'"/>
+            <ContactWay/>
+            <aboutWeb/>
+            <ScrollImg/>
+            <RightList   v-bind:rightList="readyRank" v-bind:type="type" v-bind:title="'热门文章'"/>
           </div>
         </div>
       </div>
@@ -32,7 +30,10 @@
 
 <script>
 import Tool from '../../utils/Tool'
-import RightList from '../../components/res/RightList'
+import RightList from '../../components/right/rightList'
+import ContactWay from '../../components/right/contactWay'
+import aboutWeb from '../../components/right/aboutWeb'
+import ScrollImg from '../../components/right/ScrollImg'
 import Item from '../../components/community/Item'
 import Pagination from '../../plugins/pagination/Pagination'
 import { mapGetters } from 'vuex'
@@ -49,14 +50,17 @@ export default {
   components: {
     RightList,
     Item,
-    Pagination
+    Pagination,
+    ScrollImg,
+    ContactWay,
+    aboutWeb
   },
   data () {
     return {
       type: null,
       pagination: {
         current: 1,
-        pageSize: 5,
+        pageSize: 10,
         total: 0,
         totalSize: 0,
         onShowSizeChange: this.getCurrDate,
@@ -124,7 +128,7 @@ export default {
     }
     await store.dispatch('getReadyRank', {type: type, size: 5})
     await store.dispatch('getRecommend', {type: type, size: 5})
-    return store.dispatch('getResContentList', {type: type, currpage: 1, size: 5})
+    return store.dispatch('getResContentList', {type: type, currpage: 1, size: 10})
   }
 }
 </script>

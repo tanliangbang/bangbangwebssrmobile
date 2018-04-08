@@ -2,20 +2,25 @@
   <div >
     <div class="header" v-if="!$store.state.common.isMobile">
       <div class="container">
-        <p class="my-logo"><router-link to="/home">bangbang</router-link></p>
-        <ul class="nav">
-          <li><router-link to="/home" > 首页 </router-link></li>
-          <li><router-link to="/resContentList">技术文章</router-link></li>
-          <li><router-link to="/myProduction"> 作品展示</router-link></li>
-          <li><router-link to="/community"> 程序员社区</router-link></li>
-        </ul>
-        <div class="loginOrRegist" v-if="this.$store.state.common.userInfo === null">
-          <a v-on:click="showLoginOrRegsit('login')">登入</a>/<a v-on:click="showLoginOrRegsit('regist')">注册</a>
-        </div>
-        <div class="loginOrRegist" v-if="this.$store.state.common.userInfo!==null">
-          <router-link to="/userCenter">{{this.$store.state.common.userInfo.username}}</router-link>/<a v-on:click="loginOut" class="loginOut">退出</a>
-        </div>
+        <h1 class="webBreif"><img src="../../../static/img/logo.png" /><img src="../../../static/img/webTitle.png" /></h1>
       </div>
+      <div class="headerNav">
+         <div class="container">
+           <ul class="nav">
+             <li><router-link to="/home" > 首页 </router-link></li>
+             <li><router-link to="/resContentList">技术文章</router-link></li>
+             <li><router-link to="/myProduction"> 作品展示</router-link></li>
+             <li><router-link to="/community"> 程序员社区</router-link></li>
+           </ul>
+           <div class="loginOrRegist" v-if="this.$store.state.common.userInfo === null">
+             <a v-on:click="showLoginOrRegsit('login')">登入</a>/<a v-on:click="showLoginOrRegsit('regist')">注册</a>
+           </div>
+           <div class="loginOrRegist" v-if="this.$store.state.common.userInfo!==null">
+             <router-link to="/userCenter">{{this.$store.state.common.userInfo.username}}</router-link>/<a v-on:click="loginOut" class="loginOut">退出</a>
+           </div>
+         </div>
+      </div>
+
     </div>
 
       <div class="mheader" v-if="$store.state.common.isMobile">
@@ -79,16 +84,32 @@ export default {
 <style lang='less' scoped>
  @import "../../style/common.less";
 .header{
-  position: fixed;
   top: 0;
   width: 100%;
-  height: 60px;
-  background: #333;
+  background: @mainColor;
   color:#fff;
   z-index: 3000;
   transition: all 1s ease;
   .router-link-active{
-    color:@mainColor;
+    background:@mainSecendColor;
+  }
+  .headerNav{
+    height: 52px;
+    background-color: #4a4a4a;
+    opacity: .9;
+    clear: both;
+  }
+  .webBreif{
+    font-weight: 100;
+    text-shadow: 0px 0px 1px rgba(94, 255, 216, 0.8);
+    padding: 20px 0px 20px 0px;
+    cursor: pointer;
+    position: relative;
+    color: #fff;
+    text-align: center;
+    >img:nth-child(2){
+      height:60px;
+    }
   }
   .loginOrRegist{
     float:right;
@@ -98,23 +119,26 @@ export default {
       cursor: pointer;
     }
     a:hover{
-      color:@mainColor;
+      color:@mainSecendColor;
     }
   }
   ul{
-    line-height:60px;
-    margin-left:40px;
     float:left;
     li{
       float:left;
-      margin:0px 20px;
       a{
-        color:#999;
+        line-height:52px;
+        padding:0px 20px;
+        color:#fff;
+        display:inline-block;
+        margin-right:1px;
       }
       a:hover{
-        color:@mainColor;
+        background:@mainSecendColor;
+        color:#fff;
       }
     }
+
   }
 }
 

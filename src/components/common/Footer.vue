@@ -27,7 +27,7 @@ export default {
     background:#333;
     text-align: center;
     clear:both;
-    padding:10px 20px;
+    padding:10px 0px;
     >p{
       color:#fff;
       line-height:20px;

@@ -54,9 +54,6 @@ export default {
 */
    background:#eee;
  }
- .pageContent{
-   padding-top:60px;
- }
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
