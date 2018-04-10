@@ -6,7 +6,7 @@ const http = createAPI(config)
 /**
  * 获取首页导航栏
  */
-export const getNav = (type) => http.get('/api/res/getResListByType', {
+export const getNav = (type) => http.get('/api/article/getResListByType', {
   res_type: type
 })
 
@@ -14,10 +14,7 @@ export const getNav = (type) => http.get('/api/res/getResListByType', {
  * 获取文章列表
  */
 
-export const getArticleList = (start, pageSize) => http.get('/api/article/getArticleListByType', {
-  start: start,
-  pageSize: pageSize
-})
+export const getArticleList = (param) => http.get('/api/article/getArticleListByType', param)
 
 /**
  * 根据类型获取资源列表内容
@@ -25,13 +22,13 @@ export const getArticleList = (start, pageSize) => http.get('/api/article/getArt
 export const getResContentList = (name, start, size) => http.get('/api/res/getResContentList', {
   name: name,
   start: start,
-  size: size
+  pageSize: size
 })
 
 /**
  * 获取阅读排行列表
  */
-export const getReadyRank = (name, size) => http.get('/api/res/readyRank', {
+export const getReadyRank = (name, size) => http.get('/api/article/readyRank', {
   name: name,
   size: size
 })
@@ -39,7 +36,7 @@ export const getReadyRank = (name, size) => http.get('/api/res/readyRank', {
 /**
  * 获取推荐排行列表
  */
-export const getRecommend = (name, size) => http.get('/api/res/recommend', {
+export const getRecommend = (name, size) => http.get('/api/article/recommend', {
   name: name,
   size: size
 })
@@ -47,7 +44,7 @@ export const getRecommend = (name, size) => http.get('/api/res/recommend', {
 /**
  * 根据资源类型和资源内容ID获取资源详情
  */
-export const getResContentById = (id, name) => http.get('/api/res/getResContentById', {
+export const getResContentById = (id, name) => http.get('/api/article/getResContentById', {
   id: id,
   name: name
 })
@@ -71,7 +68,7 @@ export const regist = (username, password) => http.post('/api/users/register', {
 /**
  * 用户发表文章
  */
-export const publishArticle = (content, type) => http.post('/api/res/addResContent', {
+export const publishArticle = (content, type) => http.post('/api/article/addResContent', {
   onLine: 1,
   content: content,
   name: type

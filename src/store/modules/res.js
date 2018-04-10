@@ -72,6 +72,7 @@ const actions = {
     })
   },
   getCommunityNav ({ state, commit }, type) {
+    console.log('aaaaaaaaa')
     return api.getNav(type).then((response) => {
       commit('GET_COMMUNITY_NAV', response.data)
     }).catch((error) => {

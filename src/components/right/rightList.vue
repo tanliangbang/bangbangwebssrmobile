@@ -2,14 +2,14 @@
   <div class="right-list1">
     <div class="rightTitle">{{title}}</div>
       <ul>
-        <li v-if="rightList!==null" v-for="(item) in rightList" :key="item.id" class="right-list1-item">
-          <router-link target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: type }}" :title="item.content.title">
+        <li v-if="rightList !== null" v-for="(item) in rightList.content" :key="item.id" class="right-list1-item">
+          <router-link target="_blank" :to="{ path: '/articleDetail',query: { id: item.id }}" :title="item.title">
             <span>
-              <img  v-if="item.content.titleImg" :src="item.content.titleImg" :alt="item.content.title">
-              <img v-if="!item.content.titleImg" src="/static/img/user.jpg" :alt="item.content.title">
+              <img  v-if="item.urlImg" :src="item.urlImg" :alt="item.title">
+              <img v-if="!item.urlImg" src="/static/img/user.jpg" :alt="item.title">
             </span>
-            <span>{{item.content.title}}</span>
-            <span>{{formatDate(item.createTime)}}</span><span>3评论</span>
+            <span>{{item.title}}</span>
+            <span>{{formatDate(item.createTime)}}</span><span>{{item.common_num}}评论</span>
           </router-link>
         </li>
      </ul>
@@ -20,7 +20,7 @@
 import Tool from '../../utils/Tool'
 export default {
   name: 'RightList',
-  props: ['rightList', 'title', 'type'],
+  props: ['rightList', 'title', 'typeId'],
   data () {
     return {}
   },

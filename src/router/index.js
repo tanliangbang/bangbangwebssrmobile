@@ -14,14 +14,14 @@ var routers = [
     component: (resolve) => require(['src/page/Index'], resolve)
   },
   {
-    path: '/resContentList',
-    name: 'resContentList',
-    component: (resolve) => require(['src/page/res/ResContentList'], resolve)
+    path: '/articleList',
+    name: 'articleList',
+    component: (resolve) => require(['src/page/article/ArticleList'], resolve)
   },
   {
-    path: '/resContent',
-    name: 'resContent',
-    component: (resolve) => require(['src/page/res/ResContent'], resolve)
+    path: '/articleDetail',
+    name: 'articleDetail',
+    component: (resolve) => require(['src/page/article/ArticleDetail'], resolve)
   },
   {
     path: '/myProduction',

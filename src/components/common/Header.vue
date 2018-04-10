@@ -8,7 +8,7 @@
          <div class="container">
            <ul class="nav">
              <li><router-link to="/home" > 首页 </router-link></li>
-             <li><router-link to="/resContentList">技术文章</router-link></li>
+             <li><router-link to="/articleList">技术文章</router-link></li>
              <li><router-link to="/myProduction"> 作品展示</router-link></li>
              <li><router-link to="/community"> 程序员社区</router-link></li>
            </ul>

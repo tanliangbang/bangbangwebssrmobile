@@ -2,7 +2,7 @@
     <div class="container">
       <div class="catorgary">
          <ul>
-           <li v-for="(item) in typeList"><a>{{item.content.name}}({{item.content.sys_article_num}})</a></li>
+           <li v-for="(item) in typeList"><a :class="item.id===typeId?'selected':''" v-on:click="articleListByType(item.id)">{{item.content.name}}({{item.content.sys_article_num}})</a></li>
          </ul>
       </div>
       <div class="main-right">
@@ -14,7 +14,7 @@
             <ContactWay/>
             <aboutWeb/>
             <ScrollImg/>
-            <RightList   v-bind:rightList="readyRank" v-bind:type="type" v-bind:title="'热门文章'"/>
+            <RightList   v-bind:rightList="recommendList" v-bind:type="typeId" v-bind:title="'推荐文章'"/>
           </div>
       </div>
     </div>
@@ -22,7 +22,7 @@
 
 <script>
 import Tool from '../../utils/Tool'
-import List from '../../components/res/List'
+import List from '../../components/article/List'
 import RightList from '../../components/right/rightList'
 import ContactWay from '../../components/right/contactWay'
 import aboutWeb from '../../components/right/aboutWeb'
@@ -50,6 +50,7 @@ export default {
   data () {
     return {
       type: null,
+      typeId: null,
       pagination: {
         current: 1,
         pageSize: 10,
@@ -60,39 +61,39 @@ export default {
       }
     }
   },
+  created () {
+    this.typeId = parseInt(this.$route.query.typeId)
+  },
   mounted () {
     window.scroll(0, 0)
     this.pagination.totalSize = this.articleList.pageTotal
-    this.dealType(this.articleList.content, this.typeList)
-    this.$store.commit('GET_ARTICLE_LIST', this.articleList)
   },
   computed: {
     ...mapGetters({
       typeList: 'getArticleNav',
       articleList: 'getArticleList',
-      readyRank: 'getReadyRank',
-      recommend: 'getRecommend'
+      recommendList: 'getRecommendList'
     })
   },
   methods: {
     async getCurrDate (currpage) {
+      this.typeId = parseInt(this.$route.query.typeId)
       window.scroll(0, 0)
-      await this.$store.dispatch('getArticleList', {currpage: currpage, pageSize: this.pagination.pageSize})
-      this.dealType(this.articleList.content, this.typeList)
-      this.$store.commit('GET_ARTICLE_LIST', this.articleList)
+      let param = {
+        currpage: currpage,
+        pageSize: this.pagination.pageSize,
+        typeId: this.typeId
+      }
+      await this.$store.dispatch('getArticleList', param)
+      await this.$store.dispatch('getRecommendList', param)
       this.pagination.totalSize = this.articleList.pageTotal
+    },
+    articleListByType (typeId) {
+      this.$router.push('/articleList?typeId=' + typeId)
+      this.getCurrDate(1)
     },
     formatDate (date) {
       return Tool.formatDate1(date)
-    },
-    dealType (articleList, typeList) {
-      for (let i = 0; i < articleList.length; i++) {
-        for (let j = 0; j < typeList.length; j++) {
-          if (articleList[i].typeId === typeList[j].id) {
-            articleList[i]['typeName'] = typeList[j].content.name
-          }
-        }
-      }
     },
     changeList (name) {
       this.$router.push('resContentList?type=' + name)
@@ -108,13 +109,10 @@ export default {
   },
   async asyncData(context) {
     let store = context.store
-    store.dispatch('getArticleNav', 'article_type')
-    // if (!type) {
-      // type = store.state.res.articleNav[0].name
-    // }
-    // await store.dispatch('getReadyRank', {type: type, size: 5})
-    // await store.dispatch('getRecommend', {type: type, size: 5})
-    return store.dispatch('getArticleList', {currpage: 1, pageSize: 10})
+    let typeId = context.route.query.typeId
+    await store.dispatch('getArticleNav', 'article_type')
+    await store.dispatch('getArticleList', {currpage: 1, pageSize: 10, typeId: typeId})
+    return store.dispatch('getRecommendList', {currpage: 1, pageSize: 5, typeId: typeId})
   }
 }
 </script>
@@ -131,6 +129,11 @@ export default {
       padding-left:10px;
       li{
         float:left;
+        .selected{
+          background:@mainColor;
+          color:#fff;
+          cursor: pointer;
+        }
        a{
          padding:10px 20px;
          text-align: center;
