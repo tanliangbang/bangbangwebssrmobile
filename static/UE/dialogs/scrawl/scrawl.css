@@ -64,7 +64,7 @@ em{font-style: normal;}
 
 .addImgH .icon{vertical-align:top;display: inline-block;width:16px;height:16px;background-image: url('images/addimg.png')}
 .addImgH .text{color:#888;cursor:pointer;}
-/*icon.less
+/*icon
 */
 .brushIcon{display: inline-block;width:16px;height:16px;background-image: url('images/brush.png')}
 .eraserIcon{display: inline-block;width:16px;height:16px;background-image: url('images/eraser.png')}

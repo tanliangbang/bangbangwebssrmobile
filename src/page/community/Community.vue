@@ -3,7 +3,8 @@
       <div class="container">
           <div class="navList">
             <ul >
-              <li v-for="(item) in resList" v-on:click="toCommunity(item.name)" :key="item.id" :class="item.name === type?'active' : ''">{{item.cname}}</li>
+              <li v-on:click="toCommunity(null)" :class="!typeId||typeId===null?'active':''">全部</li>
+              <li v-for="(item) in typeList" v-on:click="toCommunity(item.id)" :key="item.id" :class="item.id === typeId?'active' : ''">{{item.content.name}}</li>
               <a v-on:click="publish" class="publish-btn">我要发文</a>
             </ul>
           </div>
@@ -12,7 +13,7 @@
           <div class="main">
             <div class="listContent">
                 <div>
-                  <Item v-for="(item) in communityList.content" v-bind:type="type" v-bind:itemData="item" :key="item.id" />
+                  <Item v-for="(item) in articleList.content"  v-bind:itemData="item" :key="item.id" />
                   <Pagination v-bind:pagination = "pagination"/>
                 </div>
             </div>
@@ -21,7 +22,6 @@
             <ContactWay/>
             <aboutWeb/>
             <ScrollImg/>
-            <RightList   v-bind:rightList="readyRank" v-bind:type="type" v-bind:title="'热门文章'"/>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ export default {
   },
   data () {
     return {
-      type: null,
+      typeId: null,
       pagination: {
         current: 1,
         pageSize: 10,
@@ -70,65 +70,56 @@ export default {
   },
   mounted () {
     window.scroll(0, 0)
-    if (this.$route.query.type) {
-      this.type = this.$route.query.type
-    } else {
-      this.type = this.resList[0].name
-    }
-    this.pagination.totalSize = this.communityList.pageTotal
+    this.pagination.totalSize = this.articleList.pageTotal
   },
   computed: {
     ...mapGetters({
-      resList: 'getCommunityNav',
-      communityList: 'getResContentList',
-      readyRank: 'getReadyRank',
-      recommend: 'getRecommend'
+      typeList: 'getArticleNav',
+      articleList: 'getArticleList',
+      recommendList: 'getRecommendList'
     })
   },
   methods: {
     async getCurrDate (currpage) {
       window.scroll(0, 0)
-      if (this.$route.query.type) {
-        this.type = this.$route.query.type
+      this.typeId = parseInt(this.$route.query.typeId)
+      window.scroll(0, 0)
+      let param = {
+        currpage: currpage,
+        pageSize: this.pagination.pageSize,
+        typeId: this.typeId,
+        community: 1
       }
-      this.$store.dispatch('getReadyRank', {type: this.type, size: 5})
-      this.$store.dispatch('getRecommend', {type: this.type, size: 5})
-      await this.$store.dispatch('getResContentList', {type: this.type, currpage: currpage, size: this.pagination.pageSize})
-      this.pagination.totalSize = this.communityList.pageTotal
+      await this.$store.dispatch('getArticleList', param)
+      await this.$store.dispatch('getRecommendList', param)
+      this.pagination.totalSize = this.articleList.pageTotal
     },
     formatDate (date) {
       return Tool.formatDate2(date, '-')
     },
-    toCommunity (type) {
-      this.$router.push('community?type=' + type)
-    },
-    fetchData () {
-      if (this.$route.name === 'community' && this.$route.query.type && this.type !== null) {
-        this.getCurrDate(1)
+    toCommunity (typeId) {
+      this.typeId = typeId
+      if (typeId !== null) {
+        this.$router.push('community?typeId=' + typeId)
+      } else {
+        this.$router.push('community')
       }
+      this.getCurrDate(1)
     },
     publish () {
       let userInfo = this.$store.state.common.userInfo
       if (userInfo && userInfo !== null) {
-        this.$router.push('publishArticle?type=' + this.type)
+        this.$router.push('publishArticle')
       } else {
         this.$loginOrRegist.showLogin()
       }
     }
   },
-  watch: {
-    '$route': 'fetchData'
-  },
   async asyncData(context) {
     let store = context.store
-    let type = context.route.query.type
-    await store.dispatch('getCommunityNav', 'community')
-    if (!type) {
-      type = store.state.res.communityNav[0].name
-    }
-    await store.dispatch('getReadyRank', {type: type, size: 5})
-    await store.dispatch('getRecommend', {type: type, size: 5})
-    return store.dispatch('getResContentList', {type: type, currpage: 1, size: 10})
+    let typeId = context.route.query.typeId
+    await store.dispatch('getArticleNav', 'article_type')
+    return store.dispatch('getArticleList', {currpage: 1, pageSize: 10, typeId: typeId, community: 1})
   }
 }
 </script>

@@ -15,7 +15,7 @@ e.g. <video class="video-js my-skin-name">
 }
 /* Custom Icon Font
 --------------------------------------------------------------------------------
-The control icons are from a custom font. Each icon.less corresponds to a character
+The control icons are from a custom font. Each icon corresponds to a character
 (e.g. "\e001"). Font icons allow for easy scaling and coloring of icons.
 */
 @font-face {
@@ -61,7 +61,7 @@ The control icons are from a custom font. Each icon.less corresponds to a charac
   position: absolute;
   top: 0;
   left: 0;
-  /* Rotate the square icon.less to make a diamond */
+  /* Rotate the square icon to make a diamond */
   /* transform */
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
@@ -267,7 +267,7 @@ fonts to show/hide properly.
 }
 /* On hover, make the progress bar grow to something that's more clickable.
     This simply changes the overall font for the progress bar, and this
-    updates both the em-based widths and heights, as wells as the icon.less font */
+    updates both the em-based widths and heights, as wells as the icon font */
 .vjs-default-skin:hover .vjs-progress-control {
   font-size: .9em;
   /* Even though we're not changing the top/height, we need to include them in
@@ -352,7 +352,7 @@ fonts to show/hide properly.
 .vjs-default-skin .vjs-fullscreen-control:before {
   content: "\e000";
 }
-/* Switch to the exit icon.less when the player is in fullscreen */
+/* Switch to the exit icon when the player is in fullscreen */
 .vjs-default-skin.vjs-fullscreen .vjs-fullscreen-control:before {
   content: "\e00b";
 }
@@ -435,7 +435,7 @@ easily in the skin designer. http://designer.videojs.com/
 .vjs-default-skin .vjs-big-play-button:before {
   content: "\e001";
   font-family: VideoJS;
-  /* In order to center the play icon.less vertically we need to set the line height
+  /* In order to center the play icon vertically we need to set the line height
      to the same as the button height */
 
   line-height: 2.6em;

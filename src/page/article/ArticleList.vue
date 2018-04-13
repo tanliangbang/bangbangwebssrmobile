@@ -2,7 +2,11 @@
     <div class="container">
       <div class="catorgary">
          <ul>
-           <li v-for="(item) in typeList"><a :class="item.id===typeId?'selected':''" v-on:click="articleListByType(item.id)">{{item.content.name}}({{item.content.sys_article_num}})</a></li>
+           <li v-for="(item) in typeList">
+             <a :class="item.id===typeId?'selected':''" v-on:click="articleListByType(item.id)">
+               {{item.content.name}}({{item.content.sys_article_num}})
+             </a>
+           </li>
          </ul>
       </div>
       <div class="main-right">

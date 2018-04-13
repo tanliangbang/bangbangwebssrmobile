@@ -12,6 +12,15 @@
   <span>简介</span> <input v-model="publishForm.breif" placeholder="请输入简介" v-on:blur="checkValue('breif')" type="text"/>
   <p :class="rules.breif.error?'showError':'hidenError'">{{rules.breif.message}}</p>
 </div>
+<div class="nomalInput">
+  <span>类型</span>
+  <select v-model="publishForm.typeId">
+    <option v-for="option in typeList" v-bind:value="option.id">
+      {{ option.content.name}}
+    </option>
+  </select>
+  <p :class="rules.breif.error?'showError':'hidenError'">{{rules.breif.message}}</p>
+</div>
 <div class="fileinput">
   <span>图片</span>
   <div v-on:click="inputClick($event)">
@@ -39,6 +48,8 @@
 
 <script>
 import * as api from '../../service/getData'
+import { mapGetters } from 'vuex'
+import {publishArticle} from "../../service/getData";
 if (typeof window !== 'undefined') {
   require('../../../static/UE/ueditor.config')
   require('../../../static/UE/ueditor.all')
@@ -59,10 +70,10 @@ export default {
       UE: null,
       type: null,
       publishForm: {
-        userId: null,
         title: '',
         breif: '',
-        titleImg: '',
+        imgUrl: '',
+        typeId: '',
         content: ''
       },
       rules: {
@@ -81,13 +92,18 @@ export default {
       }
     }
   },
+  computed: {
+    ...mapGetters({
+      typeList: 'getArticleNav'
+    })
+  },
   mounted () {
     window.scroll(0, 0)
-    this.type = this.$route.query.type
     let _this = this
     if (!_this.$store.state.common.userInfo || _this.$store.state.common.userInfo === null) {
       _this.$router.push('/community')
     }
+    this.publishForm.typeId = this.typeList[0].id
     let ue = this.UE = window.UE.getEditor('editor')
     ue.ready(function () {
       ue.setHeight('100%')
@@ -106,7 +122,7 @@ export default {
         param.append('resImg', file, file.name) // 通过append向form对象添加数据
         param.append('chunk', '0') // 添加form表单中其他数据
         let config = {'Content-Type': 'multipart/form-data'}
-        this.publishForm.titleImg = await api.uploadImg(param, config)
+        this.publishForm.imgUrl = await api.uploadImg(param, config)
         _this.nextElementSibling.style.display = 'inline-block'
         let reader = new FileReader()
         reader.readAsDataURL(file)
@@ -124,7 +140,7 @@ export default {
     deleteImg (event) {
       let _this = event.currentTarget
       _this.previousElementSibling.value = ''
-      this.publishForm.titleImg = ''
+      this.publishForm.imgUrl = ''
       let preNode = _this.previousElementSibling.previousElementSibling
       preNode.lastChild.src = ''
       preNode.lastChild.style.display = 'none'
@@ -155,7 +171,14 @@ export default {
           return true
         } else {
           this.publishForm.content = this.UE.getContent()
-          await api.publishArticle(JSON.stringify(this.publishForm), this.type)
+          this.publishForm.community = 1
+          var typeList = this.typeList;
+          for (let i = 0;i < typeList.length; i++) {
+            if(typeList[i].id === this.publishForm.typeId) {
+              this.publishForm.typeName = typeList[i].content.name
+            }
+          }
+          await api.publishArticle(this.publishForm)
           this.$prompt.success('发表成功')
           this.$router.push('/community?type=' + this.type)
         }
@@ -166,6 +189,7 @@ export default {
     this.UE.destroy()
   },
   async asyncData({ store }) {
+    await store.dispatch('getArticleNav', 'article_type')
     return store.dispatch('getUserInfo')
   }
 }

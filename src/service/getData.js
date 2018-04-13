@@ -26,6 +26,11 @@ export const getResContentList = (name, start, size) => http.get('/api/res/getRe
 })
 
 /**
+ * 根据id获取文章里列表
+ */
+export const getArticleDetail = (param) => http.get('/api/article/getArticleById', param)
+
+/**
  * 获取阅读排行列表
  */
 export const getReadyRank = (name, size) => http.get('/api/article/readyRank', {
@@ -68,11 +73,7 @@ export const regist = (username, password) => http.post('/api/users/register', {
 /**
  * 用户发表文章
  */
-export const publishArticle = (content, type) => http.post('/api/article/addResContent', {
-  onLine: 1,
-  content: content,
-  name: type
-})
+export const publishArticle = (param) => http.post('/api/article/addOrUpdateArticle', param)
 
 /**
  * 修改用户信息

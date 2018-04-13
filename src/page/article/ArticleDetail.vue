@@ -1,7 +1,6 @@
   <template>
-  <div class="resContent" v-if="resContent!==null">
-    <div class="container">
-
+  <div class="articleDtail" v-if="articleDetail!==null">
+    <div class="container" >
       <div class="main-right">
             <div class="main">
                 <div class="mainList">
@@ -10,22 +9,22 @@
                   </div>
                   <div class="list-model1">
                     <div class="item">
-                      <p class="bigTitle">{{resContent.content.title}}</p>
+                      <p class="bigTitle">{{articleDetail.title}}</p>
                       <div>
-                        <span>来源:{{resContent.username!==null?resContent.username:resContent.content.from}}</span><span>日期 : {{formatDate(resContent.createTime)}}</span><span>阅读: {{resContent.readyNum}}</span>
+                        <span>来源:{{articleDetail.username!==null?articleDetail.username:articleDetail.wherefrom}}</span><span>日期 : {{formatDate(articleDetail.createTime)}}</span><span>阅读: {{articleDetail.ready_num}}</span>
                       </div>
                     </div>
-                    <div class="content"  v-html="resContent.content.content"></div>
+                    <div class="content"  v-html="articleDetail.content"></div>
                   </div>
-                  <Comment v-bind:topicId="resContent.id" v-bind:type="type" v-on:commentSuccess="commentSuccess"/>
-                  <CommentList v-bind:topicId="resContent.id" ref="commentList" v-bind:type="type"/>
+                  <Comment v-bind:topicId="articleDetail.id" v-bind:type="type" v-on:commentSuccess="commentSuccess"/>
+                  <CommentList v-bind:topicId="articleDetail.id" ref="commentList" v-bind:type="type"/>
                 </div>
               </div>
             <div class="right">
               <ContactWay/>
               <aboutWeb/>
               <ScrollImg/>
-              <RightList   v-bind:rightList="readyRank" v-bind:type="type" v-bind:title="'热门文章'"/>
+              <RightList   v-bind:rightList="recommendList" v-bind:type="type" v-bind:title="'热门文章'"/>
             </div>
           </div>
     </div>
@@ -42,11 +41,10 @@ import Comment from '../../components/comment/Comment'
 import CommentList from '../../components/comment/CommentList'
 import { mapGetters } from 'vuex'
 export default {
-  name: 'ResContent',
+  name: 'ArticleDetail',
   title () {
-    console.log(this)
     return {
-      title: this.resContent ? this.resContent.content.title : '',
+      title: this.articleContent ? this.articleContent.title : '',
       keywords: '码农集聚地,前端开发,前端社区,程序员,javascript',
       description: 'bangbang网站提供了很多前端后端及程序员开发文章包含各种html,javascript,nodejs,java,vue,react,angularjs,php等等语言、为打造优秀的程序员学习教程而努力。'
     }
@@ -61,8 +59,6 @@ export default {
   },
   data () {
     return {
-      title: null,
-      type: null
     }
   },
   created () {
@@ -70,15 +66,16 @@ export default {
   },
   computed: {
     ...mapGetters({
-      resContent: 'getResContent',
-      readyRank: 'getReadyRank',
-      recommend: 'getRecommend'
+      articleDetail: 'getArticleDetail',
+      recommendList: 'getRecommendList'
     })
   },
   mounted () {
     window.scroll(0, 0)
-    this.$store.dispatch('getReadyRank', {type: this.type, size: 5})
-    this.$store.dispatch('getRecommend', {type: this.type, size: 5})
+    let param = {
+      typeId: this.articleDetail.typeId
+    }
+    this.$store.dispatch('getRecommendList', param)
   },
   methods: {
     commentSuccess () {
@@ -88,8 +85,8 @@ export default {
       return Tool.formatDate2(date, '-')
     },
     fetchData () {
-      if (this.$route.name === 'resContent' && this.$route.query.type) {
-        this.$store.dispatch('getResContent', {type: this.type, id: this.$route.query.id})
+      if (this.$route.name === 'articleDetail') {
+        this.$store.dispatch('getArticleDetail', {id: this.$route.query.id})
       }
     }
   },
@@ -99,8 +96,7 @@ export default {
   async asyncData(context) {
     let store = context.store
     let id = context.route.query.id
-    let type = context.route.query.type
-    return store.dispatch('getResContent', {type: type, id: id})
+    return store.dispatch('getArticleDetail', id)
   }
 }
 </script>
@@ -108,7 +104,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="less" scoped>
   @import "../../style/common.less";
-  .resContent{
+  .articleDetail{
     width:100%;
   }
   .mainList{
