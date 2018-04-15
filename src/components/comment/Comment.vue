@@ -1,9 +1,15 @@
 <template>
   <div class="comment">
+      <div class="comtent-title">
+            <i class="iconfont icon-user"></i>发表我的评论
+      </div>
+      <div class="form">
         <textarea v-model="content"  placeholder="回复:"></textarea>
         <div>
           <button v-on:click="commitComment">确&nbsp;&nbsp;&nbsp;&nbsp;定</button>
         </div>
+      </div>
+
   </div>
 </template>
 
@@ -40,19 +46,30 @@ export default {
   @import "../../style/common";
   .comment{
     width:100%;
-    padding:20px 20px;
-    margin-top:20px;
+    .form{
+      padding:10px 20px;
+      >div{
+        text-align: right;
+      }
+    }
+    .comtent-title{
+      padding: 12px 20px;
+      background-color: #f7f7f7;
+      i{
+        margin-right:10px;
+        font-size:30px;
+        color:#999;
+        vertical-align: middle;
+      }
+    }
     textarea{
       width:100%;
-      height:120px;
+      height:80px;
       font-size:16px;
       border:1px solid @borderColor;
       color:@gray-color;
       border-radius: 5px;
       padding:10px;
-    }
-    >div{
-      text-align: right;
     }
     button{
       width:80px;

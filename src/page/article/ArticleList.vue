@@ -2,6 +2,11 @@
     <div class="container">
       <div class="catorgary">
          <ul>
+           <li>
+             <a :class="!typeId||typeId===null?'selected':''" v-on:click="articleListByType(null)">
+               全部
+             </a>
+           </li>
            <li v-for="(item) in typeList">
              <a :class="item.id===typeId?'selected':''" v-on:click="articleListByType(item.id)">
                {{item.content.name}}({{item.content.sys_article_num}})
@@ -66,7 +71,7 @@ export default {
     }
   },
   created () {
-    this.typeId = parseInt(this.$route.query.typeId)
+    this.typeId = this.$route.query.typeId ? parseInt(this.$route.query.typeId) : null
   },
   mounted () {
     window.scroll(0, 0)
@@ -81,7 +86,7 @@ export default {
   },
   methods: {
     async getCurrDate (currpage) {
-      this.typeId = parseInt(this.$route.query.typeId)
+      this.typeId = this.$route.query.typeId ? parseInt(this.$route.query.typeId) : null
       window.scroll(0, 0)
       let param = {
         currpage: currpage,
@@ -93,7 +98,11 @@ export default {
       this.pagination.totalSize = this.articleList.pageTotal
     },
     articleListByType (typeId) {
-      this.$router.push('/articleList?typeId=' + typeId)
+      if (typeId === null) {
+        this.$router.push('/articleList')
+      } else {
+        this.$router.push('/articleList?typeId=' + typeId)
+      }
       this.getCurrDate(1)
     },
     formatDate (date) {
@@ -103,7 +112,7 @@ export default {
       this.$router.push('resContentList?type=' + name)
     },
     fetchData () {
-      if (this.$route.name === 'resContentList' && this.$route.query.type && this.type !== null) {
+      if (this.$route.name === 'resContentList' && parseInt(this.$route.query.type) && this.type !== null) {
         this.getCurrDate(1)
       }
     }

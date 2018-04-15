@@ -2,33 +2,39 @@
   <div class="commentList" v-if="commentList!==null">
     <p>评论列表</p>
     <div v-for="comment in commentList" :key="comment.id">
-       <div >
-             <div class="top">
-               <span class="fl"><img v-if="comment.user.userAavar" :src="comment.user.userAavar"/>
-                 <img v-if="!comment.user.userAavar" src="/static/img/user.jpg"/>{{comment.user.userName}}</span>
-               <span class="fr">{{formatdate(comment.cTime)}}</span>
-             </div>
-             <p class="content">{{comment.content}}</p>
-             <div class="replyBtn">
-               <a v-on:click="showReply($event.currentTarget,comment.id,comment.user)">回复</a>
-             </div>
-       </div>
-        <div class="reply" v-if="comment.reply.list.length>0">
-            <div v-for="reply in comment.reply.list" :key="reply.id">
-                  <div class="top">
-                    <span class="fl">{{reply.user.userName}}&nbsp;&nbsp;回复:&nbsp;&nbsp;{{reply.to_user.userName}}</span>
-                    <span class="fr">{{formatdate(reply.cTime)}}</span>
-                  </div>
-                  <p class="content">{{reply.content}}</p>
-                  <div class="replyBtn">
-                    <a v-on:click="showReply($event.currentTarget.parentNode, comment.id, reply.user)">回复</a>
-                  </div>
+       <div class="comment-item">
+          <img :src="comment.user.userAavar" />
+          <div>
+            <div class="ctop">
+              <span class="cname">{{comment.user.userName}}</span>
+              <span class="ctime">{{formatdate(comment.cTime)}}</span>
             </div>
+            <p>
+              {{comment.content}}
+            </p>
+            <a class="replay" v-on:click="showReply($event,comment.id,comment.user)">回复</a>
+          </div>
+       </div>
+      <Comment class="commentForm" ref="commentForm" v-bind:topicId="form.id" v-bind:type="form.type" v-bind:replyId="form.replyId"
+               v-bind:toUserId="form.toUserId" v-on:commentSuccess="commentSuccess" />
+      <div v-for="reply in comment.reply.list" :key="reply.id">
+        <div class="comment-item" >
+          <img :src="reply.user.userAavar" />
+          <div>
+            <div class="ctop">
+              <span class="cname">{{reply.user.userName}} <i>回复</i> {{reply.to_user.userName}}</span>
+              <span class="ctime">{{formatdate(reply.cTime)}}</span>
+            </div>
+            <p>
+              {{reply.content}}
+            </p>
+            <a class="replay" v-on:click="showReply($event, comment.id, reply.user)">回复</a>
+          </div>
         </div>
-        <div class="commentTextarea">
-          <Comment v-bind:topicId="reply.id" v-bind:type="reply.type" v-bind:replyId="reply.replyId"
-                   v-bind:toUserId="reply.toUserId" v-on:commentSuccess="commentSuccess" />
-        </div>
+        <Comment class="commentForm" ref="commentForm" v-bind:topicId="form.id" v-bind:type="form.type" v-bind:replyId="form.replyId"
+                 v-bind:toUserId="form.toUserId" v-on:commentSuccess="commentSuccess" />
+      </div>
+
     </div>
 
   </div>
@@ -47,7 +53,7 @@ export default {
   data () {
     return {
       commentList: null,
-      reply: {
+      form: {
         id: this.topicId,
         type: this.type,
         replyId: 0,
@@ -64,20 +70,24 @@ export default {
       this.commentList = res.data.list
     },
     commentSuccess () {
+      let refs = this.$refs.commentForm
+      for (let i = 0; i < refs.length; i++) {
+        refs[i].$el.style.display = 'none'
+      }
       this.initData()
     },
     showReply (event, replyId, user) {
-      let currNode = event.parentNode.parentNode.parentNode.lastChild
-      if (currNode.style.display === 'none' || currNode.style.display === '') {
-        currNode.style.display = 'block'
-        this.reply.replyId = replyId
-        this.reply.toUserId = user.id
-        currNode.firstChild.firstChild.focus()
-        currNode.firstChild.firstChild.placeholder = '@' + user.userName
-      } else {
+      let refs = this.$refs.commentForm
+      this.form.replyId = replyId
+      this.form.toUserId = user.id
+      let currNode = event.currentTarget.parentNode.parentNode.nextElementSibling
+      if (currNode.style.display === 'block') {
         currNode.style.display = 'none'
-        this.reply.replyId = 0
-        this.reply.toUserId = 0
+      } else {
+        for (let i = 0; i < refs.length; i++) {
+          refs[i].$el.style.display = 'none'
+        }
+        currNode.style.display = 'block'
       }
     },
     formatdate (date) {
@@ -95,22 +105,89 @@ export default {
 
 <style lang="less" scoped>
   @import "../../style/common";
-  .commentList{
-    padding:20px 50px;
-    >p:nth-child(1){
+  .commentForm{
+    display:none;
+  }
+  .comment-item{
+    position:relative;
+    padding: 12px 20px 10px 20px;
+    >img{
+      width:54px;
+      height:54px;
+      position:absolute;
+    }
+    .ctop{
+      a{
+        margin-left:10px;
+        font-size:14px;
+        color:@mainColor;
+      }
+    }
+    .ctime{
+      position:absolute;
+      right:20px;
+      top:10px;
+      color:@gray-color;
+    }
+    >p{
+      color:@nomal-font-color;
+    }
+    .cname{
       color:@mainColor;
-      padding-bottom:20px;
-      border-bottom:1px dashed @borderColor;
+      i{
+        color:@gray-color;
+        font-size:14px;
+      }
+    }
+    .replay{
+      position:absolute;
+      right:20px;
+      font-size:14px;
+      color:@mainColor;
+      bottom:5px;
+      cursor: pointer;
     }
     >div{
-      margin-top:10px;
-      border-bottom:1px dashed @borderColor;
-      padding-bottom:10px;
+      margin-left:74px;
+      padding: 10px 15px;
+      line-height: 25px;
+      margin-top: -2px;
+      border-radius: 3px;
+      position: relative;
+      background: #fbfdfb;
+      border: 1px #eee solid;
+      font-size: 15px;
     }
-    >div:last-child{
-      border-bottom:none;
+    >div:before{
+      content: '';
+      display: inline-block;
+      border-top: 9px solid transparent;
+      border-bottom: 9px solid transparent;
+      border-right: 9px solid #eee;
+      position: absolute;
+      top: 15px;
+      left: -9px;
     }
+    >div:after{
+      content: '';
+      display: inline-block;
+      border-top: 7px solid transparent;
+      border-bottom: 7px solid transparent;
+      border-right: 7px solid #fbfdfb;
+      position: absolute;
+      top: 17px;
+      left: -7px;
+    }
+  }
 
+  .commentList{
+    >p:nth-child(1){
+      color:@mainColor;
+      padding-left:20px;
+      padding-bottom:10px;
+      margin-bottom:10px;
+      border-bottom:1px solid @mainColor;
+    }
   }
   .reply{
     .top{

@@ -2,47 +2,34 @@
   <div class="index">
     <div class="container">
          <div class="model1">
-             <p>在 bangbang，学习技能、解决问题</p>
-             <p>每个月，我们帮助 1000 万的开发者解决各种各样的技术问题。并助力他们在技术能力、职业生涯、影响力上获得提升。</p>
+             <p>bangbang的个人网站</p>
+             <p>致力于前端开发,为前端工程师提供好的学习资源,解决各种问题</p>
          </div>
          <div class="model2">
 
 
            <div class="articleList">
               <div>
-                <p class="model-title">前端技术  <router-link to="/resContentList?type=webtec"> 更多</router-link></p>
+                <p class="model-title">最新文章  <router-link to="/articleList"> 更多</router-link></p>
                 <div class="list-model1">
                   <div v-for="(item) in articleList[0]" :key="item.id" class="item">
-                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'webtec' }}">{{item.content.title}}</router-link></p>
-                    <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'webtec' }}">{{item.content.title}}</router-link></p>
+                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
+                    <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
                     <div>
-                      <span>作者:  {{item.content.from}}</span><span>日期  :{{formatDate(item.createTime,'-')}}</span><span>阅读:{{item.readyNum}}</span>
+                      <span>作者:  {{item.wherefrom}}</span><span>日期  :{{formatDate(item.createTime,'-')}}</span><span>阅读:{{item.ready_num}}</span>
                     </div>
                   </div>
                 </div>
               </div>
 
              <div>
-               <p class="model-title">后端技术  <router-link to="/resContentList?type=backtec"> 更多</router-link></p>
+               <p class="model-title">好文推荐  <router-link to="/articleList"> 更多</router-link></p>
                <div class="list-model1">
                  <div v-for="(item) in articleList[1]" :key="item.id" class="item">
-                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'backtec' }}">{{item.content.title}}</router-link></p>
-                   <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'backtec' }}">{{item.content.title}}</router-link></p>
+                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
+                   <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link></p>
                    <div>
-                     <span>作者: {{item.content.from}}</span><span>日期 :{{formatDate(item.createTime,'-')}}</span> <span> 阅读: {{item.readyNum}}</span>
-                   </div>
-                 </div>
-               </div>
-             </div>
-
-             <div>
-               <p class="model-title">优秀文章  <router-link to="/resContentList?type=goodarticles"> 更多</router-link></p>
-               <div class="list-model1">
-                 <div v-for="(item) in articleList[2]" :key="item.id" class="item">
-                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link  target="_blank" :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                   <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/resContent',query: { id: item.id, type: 'goodarticles' }}">{{item.content.title}}</router-link></p>
-                   <div>
-                     <span>作者: {{item.content.from}}</span> <span>日期 :{{formatDate(item.createTime,'-')}}</span> <span> 阅读: {{item.readyNum}}</span>
+                     <span>作者: {{item.wherefrom}}</span><span>日期 :{{formatDate(item.createTime,'-')}}</span> <span> 阅读: {{item.ready_num}}</span>
                    </div>
                  </div>
                </div>
@@ -124,7 +111,7 @@ export default {
   },
   async asyncData({ store }) {
     await Promise.all([
-      store.dispatch('getIndexArticleList', {type: 'webtec', currpage: 1, size: 10}),
+      store.dispatch('getIndexArticleList'),
       store.dispatch('getResContentList', {type: 'production', currpage: 1, size: 4})
     ])
   }

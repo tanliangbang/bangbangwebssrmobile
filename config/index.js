@@ -1,7 +1,7 @@
 const isProd = process.env.NODE_ENV === 'production'
 
 const proUrl = 'http://118.24.159.55' // 生产环境api地址
-const devUrl = 'http://localhost:3000' // 开发api地址
+const devUrl = 'http://118.24.159.55' // 开发api地址
 
 const FaceUrl = isProd ? proUrl : devUrl
 

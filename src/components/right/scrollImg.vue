@@ -2,7 +2,7 @@
   <div class="scrollImg">
     <div class="rightTitle">热门文章</div>
     <div class="content">
-      <img src="https://qiniu.cuiqingcai.com/wp-content/uploads/2016/03/20-234x220.jpg"/>
+      <img src="http://p3gc5ydac.bkt.clouddn.com/Fp4o6jO10oWOJCNGzRmtK-RkmyVS"/>
     </div>
   </div>
 </template>

@@ -22,6 +22,7 @@
             <ContactWay/>
             <aboutWeb/>
             <ScrollImg/>
+            <RightList   v-bind:rightList="recommendList" v-bind:type="typeId" v-bind:title="'推荐文章'"/>
           </div>
         </div>
       </div>
@@ -82,7 +83,7 @@ export default {
   methods: {
     async getCurrDate (currpage) {
       window.scroll(0, 0)
-      this.typeId = parseInt(this.$route.query.typeId)
+      this.typeId = this.$route.query.typeId ? parseInt(this.$route.query.typeId) : null
       window.scroll(0, 0)
       let param = {
         currpage: currpage,
@@ -119,6 +120,7 @@ export default {
     let store = context.store
     let typeId = context.route.query.typeId
     await store.dispatch('getArticleNav', 'article_type')
+    await store.dispatch('getRecommendList', {currpage: 1, pageSize: 5, typeId: typeId, community: 1})
     return store.dispatch('getArticleList', {currpage: 1, pageSize: 10, typeId: typeId, community: 1})
   }
 }
@@ -140,6 +142,7 @@ export default {
       margin: 0px;
       width: 100%;
       height: 48px;
+      margin-top:10px;
       background: #fff;
       border: 1px solid #f0f0f0;
       overflow: hidden;
@@ -177,8 +180,6 @@ export default {
   }
   .listContent{
     margin-right:360px;
-    background:#fff;
-    padding:20px;
     >div{
       >div:last-child{
         border-bottom:none;

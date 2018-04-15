@@ -97,8 +97,9 @@ app.get('*', (req, res) => {
   }
 
   renderer.renderToString(context, (err, html) => {
-    console.log(err)
     if (err) {
+      console.log(context.url)
+      console.log(err)
       return errorHandler(err)
     }
     res.end(html)

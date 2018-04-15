@@ -1,5 +1,5 @@
 <template>
-  <div :class="pagination.total>0?'pagination':'none'" >
+  <div :class="pagination.totalSize>0?'pagination':'none'" >
       <ul>
         <li ><a :class="pagination.current===1?'disabled':''" v-on:click="prePage">上一页</a></li>
         {{dealTotalPage()}}

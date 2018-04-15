@@ -1,16 +1,22 @@
 <template>
     <div class="list">
         <article class="articleList1"   v-for="(item, index)  in articleList"   :key="item.id">
-            <h2 class="articleTitle"><i>{{item.typeName}}</i><router-link :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link></h2>
+            <h2 class="articleTitle"><i>{{item.typeName}}</i>
+              <router-link v-if="$store.state.common.isMobile" :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link>
+              <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link>
+            </h2>
             <div class="artContent">
-               <img class="lazy-img-fadein" v-lazy="item.imgUrl" />
+              <div>
+                <img class="lazy-img-fadein" v-lazy="item.imgUrl" />
+              </div>
                <span>{{item.breif}}</span>
             </div>
           <div class="otherInfo">
-            <span><i class="fa fa-user"></i><a>{{item.wherefrom}}</a></span>
-            <span><i class="fa fa-clock-o"></i>{{formatDate(item.createTime)}}</span>
-            <span><i class="fa fa-eye"></i>{{item.ready_num}}</span>
-            <span><i class="fa fa-thumbs-up"></i>{{item.like}}</span>
+            <span><i class="iconfont icon-user"></i><a>{{item.wherefrom}}</a></span>
+            <span><i class="iconfont icon-time"></i>{{formatDate(item.createTime)}}</span>
+            <span><i class="iconfont icon-ready"></i>{{item.ready_num}}</span>
+            <span><i class="iconfont icon-comment"></i>{{item.comment_num}}</span>
+            <span v-on:click="like(item.id, index)"><i  class="iconfont icon-like"></i>{{item.likeNum}}</span>
           </div>
         </article>
     </div>
@@ -19,6 +25,7 @@
 
 <script>
 import Tool from '../../utils/Tool'
+import * as api from '../../service/getData'
 export default {
   name: 'List',
   props: ['articleList'],
@@ -32,12 +39,17 @@ export default {
   methods: {
     formatDate (date) {
       return Tool.formatDate2(date, '-')
+    },
+    like (id, index) {
+      var _this = this
+      api.like(id).then(function () {
+        _this.articleList[index].likeNum = _this.articleList[index].likeNum + 1
+      })
     }
   }
 }
 </script>
 
 <style lang="less" scoped>
-@import "../../style/commonClass.less";
-
+  @import "../../style/commonClass.less";
 </style>

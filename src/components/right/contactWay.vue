@@ -1,23 +1,23 @@
 <template>
   <div class="contactWay">
     <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=648103576&site=qq&menu=yes">
-      <i class="qq fa fa-qq"></i>
+      <i class="iconfont icon-qq qq"></i>
     </a>
     <a href="https://github.com/tanliangbang"  rel="external nofollow" title="" target="_blank" data-original-title="github">
-      <i class="sinaweibo fa fa-twitter"></i>
-    </a>
-    <a href="mailto:648103576@qq.com" rel="external nofollow" title="" target="_blank" data-original-title="Email">
-      <i class="email fa fa-envelope-o"></i>
+      <i class="iconfont icon-github sinaweibo"></i>
     </a>
     <a class="weixin" v-on:mouseenter="showWX(true)" v-on:mouseleave="showWX(false)" title="微信">
-      <i class="weixins fa fa-weixin"></i>
+      <i class="iconfont icon-weixin weixins"></i>
       <div :class="isShowWX?'weixin-popover':'none'">
         <i class="arrow"></i>
         <img src="https://file.tanliangbang.club/FhxcFJMJoGrOIKcUDkterTDo5CL-">
       </div>
     </a>
+    <a href="mailto:648103576@qq.com" rel="external nofollow" title="" target="_blank" data-original-title="Email">
+      <i class="iconfont icon-email email"></i>
+    </a>
     <a href="http://t.qq.com/tanliangbang" rel="external nofollow" title="" target="_blank" data-original-title="腾讯微博">
-        <i class="tencentweibo fa fa-tencent-weibo"></i>
+        <i class="iconfont icon-weibo sinaweibo"></i>
     </a>
   </div>
 </template>
@@ -42,7 +42,7 @@
   @import "../../style/common.less";
   .contactWay{
     height: 65px;
-    padding: 10px 6px;
+    padding: 15px 6px;
     background-color:#fff;
     margin-bottom:10px;
     >a{
@@ -58,7 +58,7 @@
         font-size: 2.5em;
         width: 45px;
         height: 38px;
-        padding-top:7px;
+        padding:7px;
         border-radius: 4px;
         box-sizing: content-box;
       }
@@ -71,7 +71,7 @@
       width: 200px;
       top: 58px;
       left: 50%;
-      margin-left: -125px;
+      margin-left: -80px;
       height: 200px;
       z-index:10;
       background:#fff;

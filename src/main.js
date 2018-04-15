@@ -33,6 +33,6 @@ Vue.use(VueLazyload, {
   preLoad: 1,
   error: 'https://file.tanliangbang.club/404.png',
   loading: 'https://file.tanliangbang.club/loadingspin.svg',
-  attempt: 1,
-  listenEvents: ['scroll', 'mousewheel']
+  attempt: 5,
+  listenEvents: ['scroll']
 })

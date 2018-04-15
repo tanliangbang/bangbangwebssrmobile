@@ -49,9 +49,7 @@ export default {
    margin:0px;
    width:100%;
    min-height:100%;
-/*
-   background:linear-gradient(to bottom right, #50a3a2 0%, #53e3a6 100%);
-*/
+   //background:url("../static/img/bg.png") repeat;
    background:#eee;
  }
 #app {

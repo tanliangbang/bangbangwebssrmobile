@@ -16,8 +16,11 @@
                     </div>
                     <div class="content"  v-html="articleDetail.content"></div>
                   </div>
-                  <Comment v-bind:topicId="articleDetail.id" v-bind:type="type" v-on:commentSuccess="commentSuccess"/>
-                  <CommentList v-bind:topicId="articleDetail.id" ref="commentList" v-bind:type="type"/>
+                  <div class="comment">
+                    <Comment v-bind:topicId="articleDetail.id" v-bind:type="type" v-on:commentSuccess="commentSuccess"/>
+                    <CommentList v-bind:topicId="articleDetail.id" ref="commentList" v-bind:type="articleDetail.typeId"/>
+                  </div>
+
                 </div>
               </div>
             <div class="right">
@@ -62,7 +65,6 @@ export default {
     }
   },
   created () {
-    this.type = this.$route.query.type
   },
   computed: {
     ...mapGetters({
@@ -108,7 +110,6 @@ export default {
     width:100%;
   }
   .mainList{
-    background:#fff;
     padding-top:20px;
     .content{
       overflow-x:hidden;
@@ -117,12 +118,19 @@ export default {
         width:100% !important;
       }
     }
+    .list-model1{
+      background:#fff;
+    }
   }
   .topadvertise {
-    padding:0px 20px;
+    padding:0px;
     >img{
       width:100%;
     }
+  }
+  .comment{
+    background:#fff;
+    margin-top:10px;
   }
   .share{
     position:relative;

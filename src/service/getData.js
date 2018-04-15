@@ -10,6 +10,10 @@ export const getNav = (type) => http.get('/api/article/getResListByType', {
   res_type: type
 })
 
+export const like = (id) => http.post('/api/article/like', {
+  id: id
+})
+
 /**
  * 获取文章列表
  */
