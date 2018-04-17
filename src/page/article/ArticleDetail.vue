@@ -11,14 +11,14 @@
                     <div class="item">
                       <p class="bigTitle">{{articleDetail.title}}</p>
                       <div>
-                        <span>来源:{{articleDetail.username!==null?articleDetail.username:articleDetail.wherefrom}}</span><span>日期 : {{formatDate(articleDetail.createTime)}}</span><span>阅读: {{articleDetail.ready_num}}</span>
+                        <span>来源:{{articleDetail.wherefrom!==""?articleDetail.wherefrom:articleDetail.username}}</span><span>日期 : {{formatDate(articleDetail.createTime)}}</span><span>阅读: {{articleDetail.ready_num}}</span>
                       </div>
                     </div>
                     <div class="content"  v-html="articleDetail.content"></div>
                   </div>
                   <div class="comment">
-                    <Comment v-bind:topicId="articleDetail.id" v-bind:type="type" v-on:commentSuccess="commentSuccess"/>
-                    <CommentList v-bind:topicId="articleDetail.id" ref="commentList" v-bind:type="articleDetail.typeId"/>
+                    <Comment v-bind:topicId="articleDetail.id"  v-on:commentSuccess="commentSuccess"/>
+                    <CommentList v-bind:topicId="articleDetail.id" ref="commentList"/>
                   </div>
 
                 </div>
@@ -27,7 +27,7 @@
               <ContactWay/>
               <aboutWeb/>
               <ScrollImg/>
-              <RightList   v-bind:rightList="recommendList" v-bind:type="type" v-bind:title="'热门文章'"/>
+              <RightList   v-bind:rightList="recommendList"  v-bind:title="'热门文章'"/>
             </div>
           </div>
     </div>

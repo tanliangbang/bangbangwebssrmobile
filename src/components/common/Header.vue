@@ -7,16 +7,18 @@
       <div class="headerNav">
          <div class="container">
            <ul class="nav">
-             <li><router-link to="/home" > 首页 </router-link></li>
-             <li><router-link to="/articleList">技术文章</router-link></li>
-             <li><router-link to="/myProduction"> 作品展示</router-link></li>
-             <li><router-link to="/community"> 程序员社区</router-link></li>
+             <li><router-link to="home" > 首页 </router-link></li>
+             <li><router-link to="articleList">技术文章</router-link></li>
+             <li><router-link to="myProduction"> 作品展示</router-link></li>
+             <li><router-link to="community"> 程序员社区</router-link></li>
+             <li><router-link to="support">赞助及留言</router-link></li>
+
            </ul>
            <div class="loginOrRegist" v-if="this.$store.state.common.userInfo === null">
-             <a v-on:click="showLoginOrRegsit('login')">登入</a>/<a v-on:click="showLoginOrRegsit('regist')">注册</a>
+             <a v-on:click="showLoginOrRegsit('login')">登入</a> / <a v-on:click="showLoginOrRegsit('regist')">注册</a>
            </div>
            <div class="loginOrRegist" v-if="this.$store.state.common.userInfo!==null">
-             <router-link to="/userCenter">{{this.$store.state.common.userInfo.username}}</router-link>/<a v-on:click="loginOut" class="loginOut">退出</a>
+             <router-link to="/userCenter">{{this.$store.state.common.userInfo.username}}</router-link> / <a v-on:click="loginOut" class="loginOut">退出</a>
            </div>
          </div>
       </div>
@@ -24,7 +26,7 @@
     </div>
 
       <div class="mheader" v-if="$store.state.common.isMobile">
-          <p class="my-logo"><router-link to="/home">bangbang</router-link></p>
+          <p class="my-logo"><router-link to="/">bangbang</router-link></p>
           <img class="moreModel" v-on:click="show = !show" src="../../../static/img/Viewlist.png">
           <transition name="fade">
             <ul v-if="show" class="nav">

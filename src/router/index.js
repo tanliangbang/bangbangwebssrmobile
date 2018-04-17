@@ -39,6 +39,11 @@ var routers = [
     component: (resolve) => require(['src/page/community/PublishArticle'], resolve)
   },
   {
+    path: '/support',
+    name: 'support',
+    component: (resolve) => require(['src/page/support/Support'], resolve)
+  },
+  {
     path: '/userCenter',
     name: 'userCenter',
     component: (resolve) => require(['src/page/user/UserCenter'], resolve)

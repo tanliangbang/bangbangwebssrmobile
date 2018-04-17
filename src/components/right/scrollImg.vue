@@ -2,7 +2,7 @@
   <div class="scrollImg">
     <div class="rightTitle">热门文章</div>
     <div class="content">
-      <img src="http://p3gc5ydac.bkt.clouddn.com/Fp4o6jO10oWOJCNGzRmtK-RkmyVS"/>
+      <img src="https://file.tanliangbang.club/Fp4o6jO10oWOJCNGzRmtK-RkmyVS"/>
     </div>
   </div>
 </template>

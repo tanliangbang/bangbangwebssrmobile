@@ -12,13 +12,14 @@
     </p>
     <p class="summary">{{itemData.breif}}</p>
     <div class="otherInfo">
-      <span><i class="iconfont icon-user"></i><a>{{itemData.wherefrom}}</a></span>
       <span><i class="iconfont icon-time"></i>{{formatDate(itemData.createTime)}}</span>
-      <span><i class="iconfont icon-ready"></i>{{itemData.ready_num}}</span>
-      <span><i class="iconfont icon-comment"></i>{{itemData.comment_num}}</span>
-      <span><i class="iconfont icon-like" v-on:click="like(itemData.id)"></i>{{itemData.likeNum}}</span>
+      <span><i class="iconfont icon-ready"></i>{{itemData.ready_num}} 浏览</span>
+      <span><i class="iconfont icon-comment"></i>{{itemData.comment_num}} 评论</span>
+      <span><i class="iconfont icon-like" v-on:click="like(itemData.id)"></i>{{itemData.likeNum}} 喜欢</span>
     </div>
+<!--
     <img class="summaryImg" v-if="itemData.imgUrl!==''&&itemData.imgUrl!==null" :src="itemData.imgUrl">
+-->
   </div>
 </template>
 
@@ -54,6 +55,9 @@ export default {
 <style lang='less' scoped>
  @import "../../style/common.less";
  @import "../../style/commonClass.less";
+ .item:hover{
+   box-shadow: 0px 0px 10px #999;
+ }
  .item{
     background:#fff;
     position:relative;
@@ -109,7 +113,7 @@ export default {
       }
     }
     .summary{
-      padding-right:150px;
+      padding-right:0px;
       font-size:14px;
       line-height:25px;
     }

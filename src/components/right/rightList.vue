@@ -9,7 +9,7 @@
               <img v-if="!item.imgUrl" src="/static/img/user.jpg" :alt="item.title">
             </span>
             <span>{{item.title}}</span>
-            <span>{{formatDate(item.createTime)}}</span><span>{{item.common_num}}评论</span>
+            <span>{{formatDate(item.createTime)}}</span><span>{{item.comment_num}}评论</span>
           </router-link>
         </li>
      </ul>

@@ -15,9 +15,11 @@
                   <div v-for="(item) in articleList[0]" :key="item.id" class="item">
                     <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
                     <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
-                    <div>
-                      <span>作者:  {{item.wherefrom}}</span><span>日期  :{{formatDate(item.createTime,'-')}}</span><span>阅读:{{item.ready_num}}</span>
-                    </div>
+                    <div class="otherInfo">
+                      <span><i class="iconfont icon-user"></i> {{item.wherefrom}}</span>
+                      <span><i class="iconfont icon-time"></i> {{formatDate(item.createTime,'-')}}</span>
+                      <span> <i class="iconfont icon-ready"></i> {{item.ready_num}}</span>
+                      <span> <i class="iconfont icon-comment"></i> {{item.comment_num}}</span>                    </div>
                   </div>
                 </div>
               </div>
@@ -28,8 +30,11 @@
                  <div v-for="(item) in articleList[1]" :key="item.id" class="item">
                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
                    <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link></p>
-                   <div>
-                     <span>作者: {{item.wherefrom}}</span><span>日期 :{{formatDate(item.createTime,'-')}}</span> <span> 阅读: {{item.ready_num}}</span>
+                   <div class="otherInfo">
+                     <span><i class="iconfont icon-user"></i> {{item.wherefrom}}</span>
+                     <span><i class="iconfont icon-time"></i> {{formatDate(item.createTime,'-')}}</span>
+                     <span> <i class="iconfont icon-ready"></i> {{item.ready_num}}</span>
+                    <span> <i class="iconfont icon-comment"></i> {{item.comment_num}}</span>
                    </div>
                  </div>
                </div>

@@ -6,17 +6,17 @@
               <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link>
             </h2>
             <div class="artContent">
-              <div>
-                <img class="lazy-img-fadein" v-lazy="item.imgUrl" />
-              </div>
+                <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail',query: { id: item.id }}">
+                  <img class="lazy-img-fadein"  v-lazy="item.imgUrl" />
+                </router-link>
                <span>{{item.breif}}</span>
             </div>
           <div class="otherInfo">
             <span><i class="iconfont icon-user"></i><a>{{item.wherefrom}}</a></span>
             <span><i class="iconfont icon-time"></i>{{formatDate(item.createTime)}}</span>
-            <span><i class="iconfont icon-ready"></i>{{item.ready_num}}</span>
-            <span><i class="iconfont icon-comment"></i>{{item.comment_num}}</span>
-            <span v-on:click="like(item.id, index)"><i  class="iconfont icon-like"></i>{{item.likeNum}}</span>
+            <span><i class="iconfont icon-ready"></i>{{item.ready_num}} 浏览</span>
+            <span><i class="iconfont icon-comment"></i>{{item.comment_num}} 评论</span>
+            <span v-on:click="like(item.id, index)"><i  class="iconfont icon-like"></i>{{item.likeNum}} 喜欢</span>
           </div>
         </article>
     </div>

@@ -5,20 +5,22 @@
   padding: 20px 15px 30px 20px;
   margin-bottom:10px;
   position:relative;
-  border-radius:4px;
+  // border-radius:4px;
   .artContent{
      margin-top:10px;
     padding-top:10px;
-    border-top:1px dashed #ddd;
-     >div{
+    // border-top:1px dashed #ddd;
+     >a{
        width:200px;
        height:120px;
        float:left;
        margin-right:20px;
        text-align: center;
+       overflow:hidden;
        >img{
          width:100%;
          height:100%;
+         transition:transform 0.8s ease;
        }
      }
      span{
@@ -40,6 +42,12 @@
   }
 
 }
+.articleList1:hover{
+  box-shadow: 0px 0px 10px #999;
+  img{
+    transform:scale(1.4);
+  }
+}
 .articleTitle{
   display: inline;
   font-size: 20px;
@@ -54,7 +62,7 @@
      font-size:12px;
      position: relative;
      padding:5px 10px;
-     border-radius:3px;
+     //border-radius:3px;
      margin-right:20px;
      top:-2px;
    }
@@ -95,7 +103,9 @@
   }
   >span:nth-last-child(1){
     color:#f78585;
-    cursor: pointer;
+    >i{
+      cursor: pointer;
+    }
   }
 }
 

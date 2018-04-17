@@ -4,7 +4,7 @@
           <div class="navList">
             <ul >
               <li v-on:click="toCommunity(null)" :class="!typeId||typeId===null?'active':''">全部</li>
-              <li v-for="(item) in typeList" v-on:click="toCommunity(item.id)" :key="item.id" :class="item.id === typeId?'active' : ''">{{item.content.name}}</li>
+              <li v-for="(item) in typeList" v-on:click="toCommunity(item.id)" :key="item.id" :class="item.id === typeId?'active' : ''">{{item.content.name}}({{item.content.sys_community_num}})</li>
               <a v-on:click="publish" class="publish-btn">我要发文</a>
             </ul>
           </div>

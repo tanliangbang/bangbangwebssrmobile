@@ -51,7 +51,7 @@
       width: 45px;
       height: 45px;
       text-align: center;
-      margin:0px 4px;
+      margin:0px 10px;
       position: relative;
       color: #fff;
       >i{
