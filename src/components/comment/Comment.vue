@@ -5,6 +5,10 @@
       </div>
       <div class="form">
         <textarea v-model="content"  placeholder="回复:"></textarea>
+        <div class="sele">
+          <span class="promit" v-if="showError">请输入内容</span>
+          <span class="youke">游客评论(不需要登入)<input v-model="noLogin" type="checkbox"></span>
+        </div>
         <div>
           <button v-on:click="commitComment">确&nbsp;&nbsp;&nbsp;&nbsp;定</button>
         </div>
@@ -20,21 +24,25 @@ export default {
   props: ['topicId', 'type', 'toUserId', 'replyId'],
   data () {
     return {
-      content: ''
+      content: '',
+      noLogin: false,
+      showError: false
     }
   },
   methods: {
     async commitComment () {
-      if (this.$store.state.common.userInfo === null) {
+      if (!this.noLogin && this.$store.state.common.userInfo === null) {
         this.$loginOrRegist.showLogin()
         return false
       }
       if (this.content === '') {
+        this.showError = true
         return false
       } else {
-        await api.comment(this.topicId, this.toUserId, this.replyId, this.type, this.content)
+        await api.comment(this.topicId, this.toUserId, this.replyId, this.type, this.content, this.noLogin)
         this.$prompt.success('评论成功')
         this.content = ''
+        this.showError = false
         this.$emit('commentSuccess', this)
       }
     }
@@ -51,10 +59,25 @@ export default {
       >div{
         text-align: right;
       }
+      .sele{
+        font-size:12px;
+        margin-bottom:10px;
+        .promit{
+         padding-left:10px;
+         color:red;
+          float:left;
+        }
+        .youke{
+          input{
+            vertical-align: middle;
+          }
+        }
+      }
     }
     .comtent-title{
       padding: 12px 20px;
       background-color: #f7f7f7;
+      border-left:4px solid @mainColor;
       i{
         margin-right:10px;
         font-size:30px;

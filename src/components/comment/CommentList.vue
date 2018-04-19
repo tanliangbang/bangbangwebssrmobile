@@ -3,10 +3,10 @@
     <p>评论列表</p>
     <div v-for="comment in commentList" :key="comment.id">
        <div class="comment-item">
-          <img :src="comment.user.userAavar" />
+          <img :src="comment.user.userAavar?comment.user.userAavar:'/static/img/user.jpg'" />
           <div>
             <div class="ctop">
-              <span class="cname">{{comment.user.userName}}</span>
+              <span class="cname">{{comment.user.nick!==null?comment.user.nick:comment.user.userName}}</span>
               <span class="ctime">{{formatdate(comment.cTime)}}</span>
             </div>
             <p>
@@ -19,10 +19,10 @@
                v-bind:toUserId="form.toUserId" v-on:commentSuccess="commentSuccess" />
       <div v-for="reply in comment.reply.list" :key="reply.id">
         <div class="comment-item" >
-          <img :src="reply.user.userAavar" />
+          <img :src="reply.user.userAavar?reply.user.userAavar:'/static/img/user.jpg'" />
           <div>
             <div class="ctop">
-              <span class="cname">{{reply.user.userName}} <i>回复</i> {{reply.to_user.userName}}</span>
+              <span class="cname">{{reply.user.nick!==null?reply.user.nick:reply.user.userName}} <i>回复</i> {{reply.user.nick!==null?reply.user.nick:reply.user.userName}}</span>
               <span class="ctime">{{formatdate(reply.cTime)}}</span>
             </div>
             <p>
@@ -115,6 +115,9 @@ export default {
       width:54px;
       height:54px;
       position:absolute;
+    }
+    >div:nth-child(2) {
+      min-height:72px;
     }
     .ctop{
       a{

@@ -6,6 +6,22 @@
             <h1>赞助本站</h1>
           </header>
           <h2>如果您喜欢本站，感觉本站内容对您有帮助，不妨动动您的金手指给予小额赞助，予人玫瑰，手有余香，不胜感激。</h2>
+          <div class="pay">
+             <div>
+               <p>支付宝扫一扫</p>
+               <img src="https://file.tanliangbang.club/zfbpay.png">
+             </div>
+            <div>
+              <p>微信扫一扫</p>
+              <img src="https://file.tanliangbang.club/wxpay.png">
+            </div>
+          </div>
+
+          <div class="comment">
+            <Comment v-bind:topicId="0"  v-on:commentSuccess="commentSuccess"/>
+            <CommentList v-bind:topicId="0" ref="commentList"/>
+          </div>
+
         </div>
     </div>
   </div>
@@ -13,7 +29,8 @@
 
 <script>
   import { mapGetters } from 'vuex'
-
+  import Comment from '../../components/comment/Comment'
+  import CommentList from '../../components/comment/CommentList'
   export default {
     name: 'Support',
     title () {
@@ -24,6 +41,8 @@
       }
     },
     components: {
+      Comment,
+      CommentList
     },
     data () {
       return {}
@@ -33,12 +52,16 @@
     },
     computed: {
       ...mapGetters({
+        recommendList: 'getRecommendList'
       })
     },
     methods: {
+      commentSuccess () {
+        this.$refs.commentList.initData()
+      }
     },
     asyncData({ store }) {
-      // return store.dispatch('getResContentList', {type: 'production', currpage: 1, size: 5})
+      return store.dispatch('getRecommendList', {typeId: 0})
     }
   }
 </script>
@@ -50,8 +73,7 @@
       background-color:#fff;
       margin-top:10px;
     }
-  }
-  .support{
+    padding-bottom:30px;
     header{
       padding: 10px 20px 8px;
       line-height: 24px;
@@ -76,6 +98,32 @@
       text-align: center;
       border-left: 4px solid #00a67c;
       background-color: #fbfbfb;
+    }
+    .pay{
+      width:56%;
+      margin-left:22%;
+      display:flex;
+      flex-wrap: wrap-reverse;
+      margin-top:30px;
+      >div{
+        flex:1;
+        margin-right:100px;
+        p{
+          text-align: center;
+          font-size:16px;
+          font-weight: bold;
+          margin:20px 0px;
+          color:@mainColor;
+        }
+        img{
+          border:1px solid @mainColor;
+          width:100%;
+          min-width:200px;
+        }
+      }
+    }
+    .comment{
+      margin-top:100px;
     }
 
   }

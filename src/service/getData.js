@@ -102,12 +102,13 @@ export const loginOut = () => http.get('/api/users/loginOut', {
 /**
  * 评论
  */
-export const comment = (topicId, toUserId = 0, replyId = 0, type, content) => http.post('/api/comments/comment', {
+export const comment = (topicId, toUserId = 0, replyId = 0, type, content, noLogin = true) => http.post('/api/comments/comment', {
   topic_id: topicId,
   to_uid: toUserId,
   reply_id: replyId,
   type: type,
-  content: content
+  content: content,
+  noLogin: noLogin
 })
 /**
  * 评论
