@@ -47,8 +47,8 @@ export default {
   name: 'ArticleDetail',
   title () {
     return {
-      title: this.articleContent ? this.articleContent.title : '',
-      keywords: '码农集聚地,前端开发,前端社区,程序员,javascript',
+      title: this.articleDetail ? this.articleDetail.title : '',
+      keywords: (this.articleDetail && this.articleDetail['seo_keys'] !== null) ? this.articleDetail['seo_keys'] : '码农集聚地,前端开发,前端社区,程序员,javascript',
       description: 'bangbang网站提供了很多前端后端及程序员开发文章包含各种html,javascript,nodejs,java,vue,react,angularjs,php等等语言、为打造优秀的程序员学习教程而努力。'
     }
   },
