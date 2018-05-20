@@ -14,7 +14,12 @@
                         <span>来源:{{articleDetail.wherefrom!==""?articleDetail.wherefrom:articleDetail.username}}</span><span>日期 : {{formatDate(articleDetail.createTime)}}</span><span>阅读: {{articleDetail.ready_num}}</span>
                       </div>
                     </div>
+<!--
                     <div class="content"  v-html="articleDetail.content"></div>
+-->
+                    <div id="doc-content" >
+                      <textarea style="display:none;">{{articleDetail.content}}</textarea>
+                    </div>
                   </div>
                   <div class="comment">
                     <Comment v-bind:topicId="articleDetail.id"  v-on:commentSuccess="commentSuccess"/>
@@ -42,6 +47,10 @@ import aboutWeb from '../../components/right/aboutWeb'
 import ScrollImg from '../../components/right/ScrollImg'
 import Comment from '../../components/comment/Comment'
 import CommentList from '../../components/comment/CommentList'
+let $s = null
+if (typeof window !== 'undefined') {
+  $s = require('scriptjs')
+}
 import { mapGetters } from 'vuex'
 export default {
   name: 'ArticleDetail',
@@ -73,6 +82,21 @@ export default {
     })
   },
   mounted () {
+    let editorPath = './../../../static/editor.md-master'
+    $s([
+      `${editorPath}/jquery.js`,
+      `${editorPath}/lib/marked.min.js`,
+      `${editorPath}/lib/prettify.min.js`,
+      `${editorPath}/lib/raphael.min.js`,
+      `${editorPath}/lib/underscore.min.js`,
+      `${editorPath}/lib/flowchart.min.js`,
+      `${editorPath}/lib/jquery.flowchart.min.js`
+    ], () => {
+      $s([`${editorPath}/editormd.min.js`, `${editorPath}/lib/sequence-diagram.min.js`], () => {
+        this.initEditor()
+      })
+    })
+
     window.scroll(0, 0)
     let param = {
       typeId: this.articleDetail.typeId
@@ -90,6 +114,27 @@ export default {
       if (this.$route.name === 'articleDetail') {
         this.$store.dispatch('getArticleDetail', {id: this.$route.query.id})
       }
+    },
+    initEditor() {
+      this.$nextTick((editorMD = window.editormd) => {
+        if (editorMD) {
+          if (this.type === 'editor') {
+            console.log('editor')
+            // this.instance = editorMD(this.id, this.editorConfig)
+          } else {
+            console.log('html')
+            this.instance = editorMD.markdownToHTML('doc-content', {
+              htmlDecode: 'style,script,iframe',
+              emoji: true,
+              taskList: true,
+              tex: true, // 默认不解析
+              flowChart: true, // 默认不解析
+              sequenceDiagram: true, // 默认不解析
+              codeFold: true
+            })
+          }
+        }
+      })
     }
   },
   watch: {
@@ -108,6 +153,9 @@ export default {
   @import "../../style/common.less";
   .articleDetail{
     width:100%;
+  }
+  #doc-content{
+    padding:20px;
   }
   .mainList{
     padding-top:20px;
