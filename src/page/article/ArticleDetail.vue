@@ -149,8 +149,22 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" scoped>
-  @import "../../style/common.less";
+<style lang="less">
+  @import "../../style/var";
+  h4{
+    position:relative;
+    line-height: 18px;
+    padding: 10px 20px 9px 10px;
+  }
+  h4::after{
+    content:' ';
+    width:5px;
+    height:100%;
+    position:absolute;
+    left:-20px;
+    top:0;
+    background:@mainColor;
+  }
   .articleDetail{
     width:100%;
   }
