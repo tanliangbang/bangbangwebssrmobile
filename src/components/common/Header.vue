@@ -133,11 +133,26 @@ export default {
         padding:0px 20px;
         color:#fff;
         display:inline-block;
-        margin-right:1px;
+        position:relative;
+      }
+      a::before{
+        content: "";
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: @mainSecendColor;
+        z-index: -1;
+        transform: scale3d(0, 0, 1);
+        transform-origin: 50% 100%;
+        transition: transform .3s;
       }
       a:hover{
-        background:@mainSecendColor;
-        color:#fff;
+        color: #fff;
+        &::before {
+          transform: scale3d(1, 1, 1);
+          transform-origin: 50% 0%;
+        }
       }
     }
 
