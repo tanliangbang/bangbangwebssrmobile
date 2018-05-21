@@ -156,11 +156,11 @@ export default {
          color:@mainColor;
          margin-bottom:10px;
          display:inline-block;
+         position:relative;
+         cursor: pointer;
        }
         a:hover{
-          background:@mainColor;
-          color:#fff;
-          cursor: pointer;
+          color: @mainColor;
         }
       }
 
