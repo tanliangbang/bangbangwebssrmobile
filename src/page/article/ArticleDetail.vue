@@ -142,7 +142,8 @@ export default {
   },
   async asyncData(context) {
     let store = context.store
-    let id = context.route.query.id
+    console.log(context.route.params)
+    let id = context.route.params.id
     return store.dispatch('getArticleDetail', id)
   }
 }

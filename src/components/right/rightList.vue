@@ -3,7 +3,7 @@
     <div class="rightTitle">{{title}}</div>
       <ul>
         <li v-if="rightList !== null" v-for="(item) in rightList.content" :key="item.id" class="right-list1-item">
-          <router-link target="_blank" :to="{ path: '/articleDetail',query: { id: item.id }}" :title="item.title">
+          <router-link target="_blank" :to="{ path: '/articleDetail/' + item.id }" :title="item.title">
             <span>
               <img  v-if="item.imgUrl" :src="item.imgUrl" :alt="item.title">
               <img v-if="!item.imgUrl" src="/static/img/user.jpg" :alt="item.title">

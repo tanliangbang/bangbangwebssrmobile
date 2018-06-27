@@ -2,11 +2,11 @@
     <div class="list">
         <article class="articleList1"   v-for="(item, index)  in articleList"   :key="item.id">
             <h2 class="articleTitle"><i>{{item.typeName}}</i>
-              <router-link v-if="$store.state.common.isMobile" :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link>
-              <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link>
+              <router-link v-if="$store.state.common.isMobile" :to="{ path: '/articleDetail/' + item.id }">{{item.title}}</router-link>
+              <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail/' + item.id }">{{item.title}}</router-link>
             </h2>
             <div class="artContent">
-                <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail',query: { id: item.id }}">
+                <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail/' + item.id }">
                   <img class="lazy-img-fadein"  v-lazy="item.imgUrl" />
                 </router-link>
                <span>{{item.breif}}</span>

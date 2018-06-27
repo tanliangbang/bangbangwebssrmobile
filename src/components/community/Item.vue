@@ -7,8 +7,8 @@
     </div>
     <p class="title" >
       <i>{{itemData.typeName}}</i>
-      <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail',query: { id: itemData.id,}}">{{itemData.title}}</router-link>
-      <router-link v-if="$store.state.common.isMobile"  :to="{ path: '/articleDetail',query: { id: itemData.id}}">{{itemData.title}}</router-link>
+      <router-link v-if="!$store.state.common.isMobile" target="_blank" :to="{ path: '/articleDetail/' + itemData.id }">{{itemData.title}}</router-link>
+      <router-link v-if="$store.state.common.isMobile"  :to="{ path: '/articleDetail/' + itemData.id }">{{itemData.title}}</router-link>
     </p>
     <p class="summary">{{itemData.breif}}</p>
     <div class="otherInfo">

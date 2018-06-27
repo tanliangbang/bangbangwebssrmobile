@@ -19,7 +19,7 @@ var routers = [
     component: (resolve) => require(['src/page/article/ArticleList'], resolve)
   },
   {
-    path: '/articleDetail',
+    path: '/articleDetail/:id',
     name: 'articleDetail',
     component: (resolve) => require(['src/page/article/ArticleDetail'], resolve)
   },

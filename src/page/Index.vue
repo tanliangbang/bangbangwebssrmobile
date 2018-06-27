@@ -1,5 +1,5 @@
 <template>
-  <div class="index">
+  <div class="index mainMg">
     <div class="container">
          <div class="model1">
              <p>bangbang的个人网站</p>
@@ -13,8 +13,8 @@
                 <p class="model-title">最新文章  <router-link to="/articleList"> 更多</router-link></p>
                 <div class="list-model1">
                   <div v-for="(item) in articleList[0]" :key="item.id" class="item">
-                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
-                    <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
+                    <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/articleDetail/' + item.id }">{{item.title}}</router-link></p>
+                    <p v-if="$store.state.common.isMobile" class="nomalTitle"><router-link  :to="{ path: '/articleDetail/' + item.id }">{{item.title}}</router-link></p>
                     <div class="otherInfo">
                       <span><i class="iconfont icon-user"></i> {{item.wherefrom}}</span>
                       <span><i class="iconfont icon-time"></i> {{formatDate(item.createTime,'-')}}</span>
@@ -28,8 +28,8 @@
                <p class="model-title">好文推荐  <router-link to="/articleList"> 更多</router-link></p>
                <div class="list-model1">
                  <div v-for="(item) in articleList[1]" :key="item.id" class="item">
-                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/articleDetail',query: { id: item.id}}">{{item.title}}</router-link></p>
-                   <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/articleDetail',query: { id: item.id }}">{{item.title}}</router-link></p>
+                   <p v-if="!$store.state.common.isMobile" class="nomalTitle"><router-link   target="_blank" :to="{ path: '/articleDetail/' + item.id }">{{item.title}}</router-link></p>
+                   <p v-if="$store.state.common.isMobile" class="nomalTitle" ><router-link  :to="{ path: '/articleDetail/' + item.id }">{{item.title}}</router-link></p>
                    <div class="otherInfo">
                      <span><i class="iconfont icon-user"></i> {{item.wherefrom}}</span>
                      <span><i class="iconfont icon-time"></i> {{formatDate(item.createTime,'-')}}</span>
